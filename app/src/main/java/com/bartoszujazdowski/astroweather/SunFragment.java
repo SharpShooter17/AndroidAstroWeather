@@ -1,6 +1,7 @@
 package com.bartoszujazdowski.astroweather;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +24,9 @@ public class SunFragment extends Fragment {
     private TextView civilMorningText;
     private TextView civilEveningText;
 
+    private Handler handler = new Handler();
+    private Runnable runnable;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstance){
@@ -34,6 +38,16 @@ public class SunFragment extends Fragment {
         this.civilEveningText = view.findViewById(R.id.civilEveningText);
 
         this.updateInfo();
+
+        this.runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateInfo();
+                handler.postDelayed(this, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
+            }
+        };
+
+        this.handler.postDelayed(this.runnable, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
 
         return view;
     }

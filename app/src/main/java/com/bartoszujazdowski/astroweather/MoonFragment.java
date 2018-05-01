@@ -1,6 +1,7 @@
 package com.bartoszujazdowski.astroweather;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ public class MoonFragment extends Fragment {
     private TextView moonSetText;
     private TextView moonIlluminationText;
     private TextView nextFullMoonText;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     @Nullable
     @Override
@@ -33,6 +36,16 @@ public class MoonFragment extends Fragment {
         this.nextFullMoonText = (TextView) view.findViewById(R.id.nextFullMoonText);
 
         this.update();
+
+        this.runnable = new Runnable() {
+            @Override
+            public void run() {
+                update();
+                handler.postDelayed(this, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
+            }
+        };
+
+        this.handler.postDelayed(this.runnable, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
 
         return view;
     }

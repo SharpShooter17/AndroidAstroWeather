@@ -2,6 +2,7 @@ package com.bartoszujazdowski.astroweather;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,9 @@ public class Astro extends FragmentActivity {
     private TextView longitudeInfoText;
     private TextView timeInfoText;
 
+    private Handler handler = new Handler();
+    private Runnable runnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,16 @@ public class Astro extends FragmentActivity {
 
         SettingsSingleton.getInstance().update();
         updateInfo();
+
+        this.runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateInfo();
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        this.handler.postDelayed(this.runnable, 1000);
     }
 
     private void setupViewPager(ViewPager viewPager){
