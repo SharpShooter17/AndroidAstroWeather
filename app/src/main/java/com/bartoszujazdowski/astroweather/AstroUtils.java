@@ -18,14 +18,22 @@ public class AstroUtils {
 
     public static AstroDateTime getCurrentAstroDateTime() {
         Date currentTime = Calendar.getInstance().getTime();
+
         AstroDateTime astroDateTime = new AstroDateTime();
+
         astroDateTime.setDay(currentTime.getDay());
         astroDateTime.setMonth(currentTime.getMonth());
         astroDateTime.setYear(currentTime.getYear());
         astroDateTime.setSecond(currentTime.getSeconds());
         astroDateTime.setMinute(currentTime.getMinutes());
         astroDateTime.setHour(currentTime.getHours());
+        astroDateTime.setTimezoneOffset(currentTime.getTimezoneOffset());
+
         return astroDateTime;
+    }
+
+    public static Date converAstroDateTimeToDate(AstroDateTime astroDateTime) {
+        return new Date(astroDateTime.getYear(), astroDateTime.getMonth(), astroDateTime.getDay(), astroDateTime.getHour(), astroDateTime.getMinute());
     }
 
     public static AstroCalculator.Location getCurrentAstroLocation(Context context) {

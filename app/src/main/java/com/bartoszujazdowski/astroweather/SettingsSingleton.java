@@ -44,6 +44,6 @@ public class SettingsSingleton {
 
     public void update(){
         this.astroCalculator.setDateTime(AstroUtils.getCurrentAstroDateTime());
-        this.astroCalculator.setLocation(new AstroCalculator.Location(this.latitude.getValue().doubleValue(), this.longitude.getValue().doubleValue()));
+        this.astroCalculator.setLocation(new AstroCalculator.Location(((Number)this.latitude.getValue()).doubleValue(), ((Number)this.longitude.getValue()).doubleValue()));
     }
 }
