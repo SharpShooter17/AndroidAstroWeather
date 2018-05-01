@@ -9,7 +9,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * Created by Bartosz Ujazdowski on 30.04.2018.
  */
 
-public class CustomTextWatcher<N extends MutableNumber>implements TextWatcher {
+public class CustomTextWatcher<N extends MutableNumber> implements TextWatcher {
 
     private N number;
 

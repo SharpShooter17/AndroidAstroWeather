@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import java.util.Date;
 
 /**
  * Created by Bartosz Ujazdowski on 30.04.2018.
@@ -14,6 +17,10 @@ public class Astro extends FragmentActivity {
 
     private AstroStatePageAdapter astroStatePageAdapter;
     private ViewPager viewPager;
+
+    private TextView latitudeInfoText;
+    private TextView longitudeInfoText;
+    private TextView timeInfoText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,13 @@ public class Astro extends FragmentActivity {
         setupViewPager(viewPager);
 
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
+        this.latitudeInfoText = (TextView) findViewById(R.id.latitudeInfoText);
+        this.longitudeInfoText = (TextView) findViewById(R.id.longitudeInfoText);
+        this.timeInfoText = (TextView) findViewById(R.id.timeInfo);
+
+        SettingsSingleton.getInstance().update();
+        updateInfo();
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -50,4 +64,11 @@ public class Astro extends FragmentActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
+
+    public void updateInfo(){
+        this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
+        this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
+        this.timeInfoText.setText(new Date().toString());
+    }
+
 }
