@@ -19,13 +19,6 @@ public class Astro extends FragmentActivity {
     private AstroStatePageAdapter astroStatePageAdapter;
     private ViewPager viewPager;
 
-    private TextView latitudeInfoText;
-    private TextView longitudeInfoText;
-    private TextView timeInfoText;
-
-    private Handler handler = new Handler();
-    private Runnable runnable;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,23 +30,6 @@ public class Astro extends FragmentActivity {
         setupViewPager(viewPager);
 
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-
-        this.latitudeInfoText = (TextView) findViewById(R.id.latitudeInfoText);
-        this.longitudeInfoText = (TextView) findViewById(R.id.longitudeInfoText);
-        this.timeInfoText = (TextView) findViewById(R.id.timeInfo);
-
-        SettingsSingleton.getInstance().update();
-        updateInfo();
-
-        this.runnable = new Runnable() {
-            @Override
-            public void run() {
-                updateInfo();
-                handler.postDelayed(this, 1000);
-            }
-        };
-
-        this.handler.postDelayed(this.runnable, 1000);
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -78,11 +54,4 @@ public class Astro extends FragmentActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
-
-    public void updateInfo(){
-        this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
-        this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
-        this.timeInfoText.setText(new Date().toString());
-    }
-
 }
