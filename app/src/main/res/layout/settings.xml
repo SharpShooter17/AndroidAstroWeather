@@ -42,7 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Latitude:" />
+                android:text="Latitude:"
+                android:textSize="26dp" />
 
             <EditText
                 android:id="@+id/latitudeInput"
@@ -57,13 +58,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Longitude:" />
+                android:text="Longitude:"
+                android:textSize="26dp" />
 
             <EditText
                 android:id="@+id/longitudeInput"
@@ -78,13 +81,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Refresh frequency" />
+                android:text="Refresh frequency"
+                android:textSize="26dp" />
 
             <EditText
                 android:id="@+id/refreshFrequencyInput"

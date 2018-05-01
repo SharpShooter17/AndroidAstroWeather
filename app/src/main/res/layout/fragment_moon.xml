@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Moon Info"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="26dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -30,14 +31,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Moonrise" />
+                    android:text="Moonrise"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/moonRiseText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -49,14 +52,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Moonset" />
+                    android:text="Moonset"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/moonSetText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -67,14 +72,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Next full moon" />
+                    android:text="Next full moon"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/nextFullMoonText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -85,14 +92,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Moon illumination" />
+                    android:text="Moon illumination"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/moonIluminationText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="26dp" />
 
             </TableRow>
 
@@ -104,14 +113,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Moon age" />
+                    android:text="Moon age"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/moonAgeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="26dp" />
             </TableRow>
         </TableLayout>
 

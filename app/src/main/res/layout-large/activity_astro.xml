@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.bartoszujazdowski.astroweather.Astro">
+    tools:context="com.bartoszujazdowski.astroweather.Astro"
+    android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16px"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.bartoszujazdowski.astroweather.SunFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.bartoszujazdowski.astroweather.MoonFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal|center"
         android:layout_margin="16px"
-        android:layout_weight="2">
+        android:layout_weight="1"
+        android:textAlignment="center">
 
         <TableRow
             android:layout_width="match_parent"
@@ -86,4 +104,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
 </LinearLayout>

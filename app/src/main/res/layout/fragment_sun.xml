@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sun Info"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="26dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -28,14 +29,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sunrise" />
+                    android:text="Sunrise"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/sunriseText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="4:57" />
+                    android:text="4:57"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -46,14 +49,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sunset" />
+                    android:text="Sunset"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/sunsetText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="19:25" />
+                    android:text="19:25"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -64,14 +69,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Civil morning" />
+                    android:text="Civil morning"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/civilMorningText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="5:25" />
+                    android:text="5:25"
+                    android:textSize="26dp" />
             </TableRow>
 
             <TableRow
@@ -82,14 +89,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Civil evening" />
+                    android:text="Civil evening"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/civilEveningText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="19:36" />
+                    android:text="19:36"
+                    android:textSize="26dp" />
             </TableRow>
 
         </TableLayout>
