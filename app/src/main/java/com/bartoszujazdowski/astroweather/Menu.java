@@ -19,6 +19,14 @@ public class Menu extends AppCompatActivity {
         startButton = (Button) findViewById(R.id.startButton);
         settingsButton = (Button) findViewById(R.id.settingsButton);
 
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu.this, Astro.class);
+                startActivity(intent);
+            }
+        });
+
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
