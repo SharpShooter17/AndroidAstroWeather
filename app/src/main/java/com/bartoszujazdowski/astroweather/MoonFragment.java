@@ -53,13 +53,14 @@ public class MoonFragment extends Fragment {
     }
 
     public void update(){
+        SettingsSingleton.getInstance().update();
         AstroCalculator.MoonInfo moonInfo = SettingsSingleton.getInstance().getAstroCalculator().getMoonInfo();
 
         this.nextNewMoonText.setText( AstroUtils.converAstroDateTimeToDate(moonInfo.getNextNewMoon()).toString() );
         this.moonRiseText.setText( AstroUtils.converAstroDateTimeToDate( moonInfo.getMoonrise() ).toString() );
         this.moonSetText.setText(  AstroUtils.converAstroDateTimeToDate( moonInfo.getMoonset() ).toString() );
         this.nextFullMoonText.setText(  AstroUtils.converAstroDateTimeToDate( moonInfo.getNextFullMoon() ).toString() );
-        this.moonIlluminationText.setText(  String.valueOf( moonInfo.getIllumination() ) );
+        this.moonIlluminationText.setText(  String.valueOf( (int)(moonInfo.getIllumination() * 100) ) + "%" );
         this.moonAgeText.setText(  String.valueOf( moonInfo.getAge() ) );
 
     }

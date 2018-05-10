@@ -47,7 +47,7 @@ public class InfoFragment extends Fragment {
     public void updateInfo(){
         this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
         this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
-        this.timeInfoText.setText(new Date().toString());
+        this.timeInfoText.setText( AstroUtils.converAstroDateTimeToDate( AstroUtils.getCurrentAstroDateTime() ).toString() );
     }
 
 }

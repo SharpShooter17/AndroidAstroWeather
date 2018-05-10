@@ -53,6 +53,7 @@ public class SunFragment extends Fragment {
     }
 
     public void updateInfo(){
+        SettingsSingleton.getInstance().update();
         AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
 
         this.sunriseText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getSunrise()).toString() );

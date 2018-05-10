@@ -3,6 +3,8 @@ package com.bartoszujazdowski.astroweather;
 import android.app.Application;
 
 import com.astrocalculator.AstroCalculator;
+import com.astrocalculator.AstroDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 

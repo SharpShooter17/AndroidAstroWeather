@@ -21,20 +21,20 @@ public class AstroUtils {
 
         AstroDateTime astroDateTime = new AstroDateTime();
 
-        astroDateTime.setDay(currentTime.getDay());
-        astroDateTime.setMonth(currentTime.getMonth());
-        astroDateTime.setYear(currentTime.getYear());
+        astroDateTime.setDay(currentTime.getDate());
+        astroDateTime.setMonth(currentTime.getMonth() + 1);
+        astroDateTime.setYear(currentTime.getYear() + 1900);
         astroDateTime.setSecond(currentTime.getSeconds());
         astroDateTime.setMinute(currentTime.getMinutes());
         astroDateTime.setHour(currentTime.getHours());
-        astroDateTime.setTimezoneOffset(currentTime.getTimezoneOffset());
+        astroDateTime.setTimezoneOffset( 2 );
         astroDateTime.setDaylightSaving(true);
 
         return astroDateTime;
     }
 
     public static Date converAstroDateTimeToDate(AstroDateTime astroDateTime) {
-        return new Date(astroDateTime.getYear(), astroDateTime.getMonth(), astroDateTime.getDay(), astroDateTime.getHour(), astroDateTime.getMinute());
+        return new Date(astroDateTime.getYear() - 1900, astroDateTime.getMonth() - 1, astroDateTime.getDay(), astroDateTime.getHour(), astroDateTime.getMinute(), astroDateTime.getSecond());
     }
 
     public static AstroCalculator.Location getCurrentAstroLocation(Context context) {
