@@ -16,11 +16,12 @@ public class MoonFragment extends Fragment {
 
     public static final String TAG = "Moon Fragment";
 
-    private TextView moonAgeText;
     private TextView moonRiseText;
     private TextView moonSetText;
-    private TextView moonIlluminationText;
+    private TextView nextNewMoonText;
     private TextView nextFullMoonText;
+    private TextView moonAgeText;
+    private TextView moonIlluminationText;
     private Handler handler = new Handler();
     private Runnable runnable;
 
@@ -29,11 +30,12 @@ public class MoonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_moon, container, false);
 
-        this.moonAgeText = (TextView) view.findViewById(R.id.moonAgeText);
         this.moonRiseText = (TextView) view.findViewById(R.id.moonRiseText);
         this.moonSetText = (TextView) view.findViewById(R.id.moonSetText);
-        this.moonIlluminationText = (TextView) view.findViewById(R.id.moonIluminationText);
+        this.nextNewMoonText = (TextView) view.findViewById(R.id.nextNewMoonText);
         this.nextFullMoonText = (TextView) view.findViewById(R.id.nextFullMoonText);
+        this.moonAgeText = (TextView) view.findViewById(R.id.moonAge);
+        this.moonIlluminationText = (TextView) view.findViewById(R.id.moonIlluminationText);
 
         this.update();
 
@@ -53,10 +55,12 @@ public class MoonFragment extends Fragment {
     public void update(){
         AstroCalculator.MoonInfo moonInfo = SettingsSingleton.getInstance().getAstroCalculator().getMoonInfo();
 
-        this.moonAgeText.setText( String.valueOf(moonInfo.getAge()) );
+        this.nextNewMoonText.setText( AstroUtils.converAstroDateTimeToDate(moonInfo.getNextNewMoon()).toString() );
         this.moonRiseText.setText( AstroUtils.converAstroDateTimeToDate( moonInfo.getMoonrise() ).toString() );
         this.moonSetText.setText(  AstroUtils.converAstroDateTimeToDate( moonInfo.getMoonset() ).toString() );
-        this.moonIlluminationText.setText( String.valueOf(moonInfo.getIllumination()) );
         this.nextFullMoonText.setText(  AstroUtils.converAstroDateTimeToDate( moonInfo.getNextFullMoon() ).toString() );
+        this.moonIlluminationText.setText(  String.valueOf( moonInfo.getIllumination() ) );
+        this.moonAgeText.setText(  String.valueOf( moonInfo.getAge() ) );
+
     }
 }

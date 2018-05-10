@@ -12,6 +12,10 @@ import lombok.Setter;
 
 public class SettingsSingleton {
 
+    static {
+        SettingsSingleton.instance = new SettingsSingleton();
+    }
+
     /** Szerokość geograficzna */
     @Setter
     @Getter
@@ -27,16 +31,16 @@ public class SettingsSingleton {
     private MutableNumber<Integer> refreshFrequency;
 
     @Getter
-    private static SettingsSingleton instance = new SettingsSingleton();
+    private static SettingsSingleton instance;
 
     @Getter
     private AstroCalculator astroCalculator;
 
     private SettingsSingleton(){
-        AstroCalculator.Location location = AstroUtils.getCurrentAstroLocation(Menu.getContext());
+      //  AstroCalculator.Location location = AstroUtils.getCurrentAstroLocation(Menu.getContext());
 
-        this.latitude = new MutableNumber<>(new Float(location.getLatitude()));
-        this.longitude =  new MutableNumber<>(new Float(location.getLongitude()));
+        this.latitude = new MutableNumber<>(new Float(0));
+        this.longitude =  new MutableNumber<>(new Float(0));
         this.refreshFrequency = new MutableNumber<>(new Integer(60));
 
         this.astroCalculator = new AstroCalculator(AstroUtils.getCurrentAstroDateTime(), new AstroCalculator.Location(latitude.getValue(), longitude.getValue()));

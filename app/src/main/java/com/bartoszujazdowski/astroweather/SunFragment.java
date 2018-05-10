@@ -55,9 +55,9 @@ public class SunFragment extends Fragment {
     public void updateInfo(){
         AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
 
-        this.sunriseText.setText( sunInfo.getSunrise().getHour() + ":" + sunInfo.getSunrise().getMinute() );
-        this.sunsetText.setText( sunInfo.getSunset().getHour() + ":" + sunInfo.getSunset().getMinute() );
-        this.civilMorningText.setText( sunInfo.getTwilightMorning().getHour() + ":" + sunInfo.getTwilightMorning().getMinute() );
-        this.civilEveningText.setText( sunInfo.getTwilightEvening().getHour() + ":" + sunInfo.getTwilightEvening().getMinute() );
+        this.sunriseText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getSunrise()).toString() );
+        this.sunsetText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getSunset()).toString() );
+        this.civilMorningText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightMorning()).toString());
+        this.civilEveningText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightEvening()).toString() );
     }
 }
