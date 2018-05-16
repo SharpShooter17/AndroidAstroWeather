@@ -1,17 +1,18 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.fagments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.astrocalculator.AstroCalculator;
-import com.astrocalculator.AstroDateTime;
+import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 
 public class MoonFragment extends Fragment implements UpdateI {
 

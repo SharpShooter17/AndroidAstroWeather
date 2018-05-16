@@ -9,7 +9,7 @@
     android:fillViewport="true"
     android:scrollbarStyle="insideOverlay"
     android:visibility="visible"
-    tools:context="com.bartoszujazdowski.astroweather.Astro">
+    tools:context="com.bartoszujazdowski.astroweather.activities.Astro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 
         <fragment
             android:id="@+id/fragment5"
-            android:name="com.bartoszujazdowski.astroweather.InfoFragment"
+            android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"

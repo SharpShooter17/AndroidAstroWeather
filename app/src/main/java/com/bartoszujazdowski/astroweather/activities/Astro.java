@@ -1,17 +1,22 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
-import com.astrocalculator.AstroCalculator;
+import com.bartoszujazdowski.astroweather.Helpers.AstroStatePageAdapter;
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.fagments.SunFragment;
+import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
+import com.bartoszujazdowski.astroweather.Helpers.ZoomOutPageTransformer;
+import com.bartoszujazdowski.astroweather.fagments.MoonFragment;
+import com.bartoszujazdowski.astroweather.fagments.MoreInfoFragment;
+import com.bartoszujazdowski.astroweather.fagments.WeatherForecastFragment;
+import com.bartoszujazdowski.astroweather.fagments.WeatherFragment;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +36,8 @@ public class Astro extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        updateIList = new ArrayList<>();
+
         setContentView(R.layout.activity_astro);
 
         astroStatePageAdapter = new AstroStatePageAdapter(getSupportFragmentManager());
@@ -40,7 +47,7 @@ public class Astro extends FragmentActivity {
 
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
-        updateIList = new ArrayList<>();
+        updateIList.add(SettingsSingleton.getInstance().getWeatherController());
 
         this.runnable = new Runnable() {
             @Override
@@ -52,6 +59,7 @@ public class Astro extends FragmentActivity {
                 handler.postDelayed(this, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
             }
         };
+
         handler.postDelayed(runnable, 0);
     }
 

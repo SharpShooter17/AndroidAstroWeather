@@ -1,9 +1,8 @@
 package com.bartoszujazdowski.astroweather;
 
-import android.app.Application;
-
 import com.astrocalculator.AstroCalculator;
-import com.astrocalculator.AstroDateTime;
+import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,20 +37,18 @@ public class SettingsSingleton {
     @Getter
     private AstroCalculator astroCalculator;
 
+    @Getter
+    private WeatherController weatherController;
+
     private SettingsSingleton(){
-      //  AstroCalculator.Location location = AstroUtils.getCurrentAstroLocation(Menu.getContext());
 
         this.latitude = new MutableNumber<>(new Float(0));
         this.longitude =  new MutableNumber<>(new Float(0));
         this.refreshFrequency = new MutableNumber<>(new Integer(60));
 
-       /* this.latitude.setMinimum(-180.0f);
-        this.latitude.setMaximum(180.0f);
-
-        this.longitude.setMinimum(-90.0f);
-        this.longitude.setMaximum(90.0f);*/
-
         this.astroCalculator = new AstroCalculator(AstroUtils.getCurrentAstroDateTime(), new AstroCalculator.Location(latitude.getValue(), longitude.getValue()));
+
+        this.weatherController = new WeatherController();
     }
 
     public void update(){

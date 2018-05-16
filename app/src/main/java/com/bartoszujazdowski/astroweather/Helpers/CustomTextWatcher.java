@@ -1,8 +1,10 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.Helpers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
+
+import com.bartoszujazdowski.astroweather.activities.Menu;
 
 import org.apache.commons.lang3.math.NumberUtils;
 

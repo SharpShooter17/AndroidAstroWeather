@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.Helpers;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

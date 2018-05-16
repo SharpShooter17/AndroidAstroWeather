@@ -1,7 +1,6 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.fagments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
+import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 
 /**
  * Created by Bartosz Ujazdowski on 30.04.2018.
  */
 
-public class SunFragment extends Fragment implements UpdateI{
+public class SunFragment extends Fragment implements UpdateI {
 
     public static final String TAG = "Sun Fragment";
 

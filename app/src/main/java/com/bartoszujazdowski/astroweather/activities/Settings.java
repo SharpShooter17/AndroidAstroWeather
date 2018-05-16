@@ -1,8 +1,12 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
+
+import com.bartoszujazdowski.astroweather.Helpers.CustomTextWatcher;
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
 
 /**
  * Created by Bartosz Ujazdowski on 20.04.2018.

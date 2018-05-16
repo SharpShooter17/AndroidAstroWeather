@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.fagments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MoreInfoFragment extends Fragment implements UpdateI{
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
+
+public class MoreInfoFragment extends Fragment implements UpdateI {
 
     private TextView windForceTV;
     private TextView windDirectionTV;

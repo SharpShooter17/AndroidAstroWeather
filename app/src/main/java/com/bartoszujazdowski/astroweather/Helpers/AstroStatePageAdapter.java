@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.Helpers;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

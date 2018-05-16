@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.Helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

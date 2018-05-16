@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bartoszujazdowski.astroweather.Astro"
+    tools:context="com.bartoszujazdowski.astroweather.activities.Astro"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,14 +16,14 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="com.bartoszujazdowski.astroweather.SunFragment"
+            android:name="com.bartoszujazdowski.astroweather.fagments.SunFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <fragment
             android:id="@+id/fragment2"
-            android:name="com.bartoszujazdowski.astroweather.MoonFragment"
+            android:name="com.bartoszujazdowski.astroweather.fagments.MoonFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/fragment4"
-        android:name="com.bartoszujazdowski.astroweather.InfoFragment"
+        android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16px"

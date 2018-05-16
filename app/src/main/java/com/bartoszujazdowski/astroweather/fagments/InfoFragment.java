@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.fagments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Date;
+import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
 
 public class InfoFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.bartoszujazdowski.astroweather;
+package com.bartoszujazdowski.astroweather.Helpers;
 
 import android.Manifest;
 import android.app.Activity;
