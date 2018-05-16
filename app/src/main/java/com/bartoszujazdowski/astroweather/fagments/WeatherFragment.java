@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.pojo.Channel;
 
 public class WeatherFragment extends Fragment implements UpdateI {
 
@@ -31,5 +33,9 @@ public class WeatherFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
+        Channel channel = SettingsSingleton.getInstance().getWeatherController().getChannel();
+        this.cityTV.setText( channel.getLocation().getCity() );
+        this.temperatureTV.setText( channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature() );
+        this.pressureTV.setText( channel.getAtmosphere().getPressure() + channel.getUnits().getPressure() );
     }
 }

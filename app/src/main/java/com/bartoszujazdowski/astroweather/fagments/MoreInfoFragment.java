@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
+import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.pojo.Channel;
 
 public class MoreInfoFragment extends Fragment implements UpdateI {
 
@@ -33,6 +35,11 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
+        Channel channel = SettingsSingleton.getInstance().getWeatherController().getChannel();
 
+        this.humidityTV.setText( channel.getAtmosphere().getHumidity() );
+        this.visabilityTV.setText( channel.getAtmosphere().getVisibility() );
+        this.windDirectionTV.setText( channel.getWind().getDirection() );
+        this.windForceTV.setText( channel.getWind().getSpeed() );
     }
 }
