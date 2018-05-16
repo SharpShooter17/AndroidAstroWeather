@@ -27,7 +27,7 @@ public class AstroUtils {
         astroDateTime.setSecond(currentTime.getSeconds());
         astroDateTime.setMinute(currentTime.getMinutes());
         astroDateTime.setHour(currentTime.getHours());
-        astroDateTime.setTimezoneOffset( 2 );
+        astroDateTime.setTimezoneOffset( 1 );
         astroDateTime.setDaylightSaving(true);
 
         return astroDateTime;

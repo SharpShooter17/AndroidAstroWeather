@@ -36,6 +36,10 @@ public class Astro extends FragmentActivity {
         AstroStatePageAdapter adapter = new AstroStatePageAdapter(getSupportFragmentManager());
         adapter.addFragment(new SunFragment(), "Sun");
         adapter.addFragment(new MoonFragment(), "Moon");
+        adapter.addFragment(new WeatherFragment(), "Weather");
+        adapter.addFragment(new MoreInfoFragment(), "MoreInfo");
+        adapter.addFragment(new WeatherForecastFragment(), "WeatherForecast");
+
         viewPager.setAdapter(adapter);
     }
 

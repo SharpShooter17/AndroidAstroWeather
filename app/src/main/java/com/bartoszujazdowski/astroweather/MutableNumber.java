@@ -13,8 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MutableNumber<N extends Number> {
     @Getter
-    @Setter
     private N value;
+
+    public void setValue(N value) throws Exception {
+        this.value = value;
+    }
 
     @Override
     public String toString(){

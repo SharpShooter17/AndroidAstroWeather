@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
@@ -63,5 +64,7 @@ public class MoonFragment extends Fragment {
         this.moonIlluminationText.setText(  String.valueOf( (int)(moonInfo.getIllumination() * 100) ) + "%" );
         this.moonAgeText.setText(  String.valueOf( moonInfo.getAge() ) );
 
+        Toast toast = Toast.makeText(Menu.getContext(), "Update", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

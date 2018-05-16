@@ -45,6 +45,12 @@ public class SettingsSingleton {
         this.longitude =  new MutableNumber<>(new Float(0));
         this.refreshFrequency = new MutableNumber<>(new Integer(60));
 
+       /* this.latitude.setMinimum(-180.0f);
+        this.latitude.setMaximum(180.0f);
+
+        this.longitude.setMinimum(-90.0f);
+        this.longitude.setMaximum(90.0f);*/
+
         this.astroCalculator = new AstroCalculator(AstroUtils.getCurrentAstroDateTime(), new AstroCalculator.Location(latitude.getValue(), longitude.getValue()));
     }
 
