@@ -16,6 +16,9 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstance){
         View view = inflater.inflate(R.layout.weather_forecast_fragment, container, false);
+
+        this.update();
+
         return view;
     }
 

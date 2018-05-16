@@ -28,12 +28,19 @@ public class WeatherFragment extends Fragment implements UpdateI {
         this.temperatureTV = (TextView) view.findViewById(R.id.temperatureTextView);
         this.pressureTV = (TextView) view.findViewById(R.id.pressureTextView);
 
+        this.update();
+
         return view;
     }
 
     @Override
     public void update() {
         Channel channel = SettingsSingleton.getInstance().getWeatherController().getChannel();
+
+        if (channel == null) {
+            return;
+        }
+
         this.cityTV.setText( channel.getLocation().getCity() );
         this.temperatureTV.setText( channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature() );
         this.pressureTV.setText( channel.getAtmosphere().getPressure() + channel.getUnits().getPressure() );

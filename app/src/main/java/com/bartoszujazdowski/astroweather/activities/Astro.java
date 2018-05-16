@@ -44,10 +44,8 @@ public class Astro extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.container);
 
         setupViewPager(viewPager);
-
-        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-
         updateIList.add(SettingsSingleton.getInstance().getWeatherController());
+        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         this.runnable = new Runnable() {
             @Override

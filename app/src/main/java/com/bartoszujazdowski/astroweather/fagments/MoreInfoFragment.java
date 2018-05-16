@@ -30,12 +30,18 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
         this.humidityTV = view.findViewById(R.id.humidityTextView);
         this.visabilityTV = view.findViewById(R.id.visabilityTextView);
 
+        this.update();
+
         return view;
     }
 
     @Override
     public void update() {
         Channel channel = SettingsSingleton.getInstance().getWeatherController().getChannel();
+
+        if (channel == null ){
+            return;
+        }
 
         this.humidityTV.setText( channel.getAtmosphere().getHumidity() );
         this.visabilityTV.setText( channel.getAtmosphere().getVisibility() );
