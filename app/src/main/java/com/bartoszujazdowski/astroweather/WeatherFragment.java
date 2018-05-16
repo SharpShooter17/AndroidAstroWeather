@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class WeatherFragment extends Fragment {
+public class WeatherFragment extends Fragment implements UpdateI{
 
     private TextView cityTV ;
     private TextView temperatureTV;
@@ -26,4 +26,8 @@ public class WeatherFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void update() {
+
+    }
 }

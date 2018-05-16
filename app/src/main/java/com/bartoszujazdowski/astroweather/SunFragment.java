@@ -15,7 +15,7 @@ import com.astrocalculator.AstroCalculator;
  * Created by Bartosz Ujazdowski on 30.04.2018.
  */
 
-public class SunFragment extends Fragment {
+public class SunFragment extends Fragment implements UpdateI{
 
     public static final String TAG = "Sun Fragment";
 
@@ -23,9 +23,6 @@ public class SunFragment extends Fragment {
     private TextView sunsetText;
     private TextView civilMorningText;
     private TextView civilEveningText;
-
-    private Handler handler = new Handler();
-    private Runnable runnable;
 
     @Nullable
     @Override
@@ -36,23 +33,11 @@ public class SunFragment extends Fragment {
         this.sunsetText = view.findViewById(R.id.sunsetText);
         this.civilMorningText = view.findViewById(R.id.civilMorningText);
         this.civilEveningText = view.findViewById(R.id.civilEveningText);
-
-        this.updateInfo();
-
-        this.runnable = new Runnable() {
-            @Override
-            public void run() {
-                updateInfo();
-                handler.postDelayed(this, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
-            }
-        };
-
-        this.handler.postDelayed(this.runnable, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
-
         return view;
     }
 
-    public void updateInfo(){
+    @Override
+    public void update(){
         SettingsSingleton.getInstance().update();
         AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
 

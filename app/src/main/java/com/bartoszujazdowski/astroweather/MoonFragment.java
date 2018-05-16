@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
-public class MoonFragment extends Fragment {
+public class MoonFragment extends Fragment implements UpdateI {
 
     public static final String TAG = "Moon Fragment";
 
@@ -23,8 +23,6 @@ public class MoonFragment extends Fragment {
     private TextView nextFullMoonText;
     private TextView moonAgeText;
     private TextView moonIlluminationText;
-    private Handler handler = new Handler();
-    private Runnable runnable;
 
     @Nullable
     @Override
@@ -37,18 +35,6 @@ public class MoonFragment extends Fragment {
         this.nextFullMoonText = (TextView) view.findViewById(R.id.nextFullMoonText);
         this.moonAgeText = (TextView) view.findViewById(R.id.moonAge);
         this.moonIlluminationText = (TextView) view.findViewById(R.id.moonIlluminationText);
-
-        this.update();
-
-        this.runnable = new Runnable() {
-            @Override
-            public void run() {
-                update();
-                handler.postDelayed(this, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
-            }
-        };
-
-        this.handler.postDelayed(this.runnable, SettingsSingleton.getInstance().getRefreshFrequency().getValue() * 1000);
 
         return view;
     }

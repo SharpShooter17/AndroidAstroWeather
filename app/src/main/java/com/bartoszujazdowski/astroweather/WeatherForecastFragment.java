@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class WeatherForecastFragment extends Fragment {
+public class WeatherForecastFragment extends Fragment implements UpdateI {
 
     @Nullable
     @Override
@@ -16,4 +16,8 @@ public class WeatherForecastFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void update() {
+
+    }
 }

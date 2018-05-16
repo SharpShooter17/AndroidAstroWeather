@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MoreInfoFragment extends Fragment {
+public class MoreInfoFragment extends Fragment implements UpdateI{
 
     private TextView windForceTV;
     private TextView windDirectionTV;
@@ -28,4 +28,8 @@ public class MoreInfoFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void update() {
+
+    }
 }
