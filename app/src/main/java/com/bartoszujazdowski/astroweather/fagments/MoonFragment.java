@@ -43,7 +43,6 @@ public class MoonFragment extends Fragment implements UpdateI {
     }
 
     public void update(){
-        SettingsSingleton.getInstance().update();
         AstroCalculator.MoonInfo moonInfo = SettingsSingleton.getInstance().getAstroCalculator().getMoonInfo();
         try {
             this.nextNewMoonText.setText(AstroUtils.converAstroDateTimeToDate(moonInfo.getNextNewMoon()).toString());

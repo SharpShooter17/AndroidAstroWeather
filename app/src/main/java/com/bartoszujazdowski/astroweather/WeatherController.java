@@ -4,6 +4,7 @@ import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import java.util.concurrent.ExecutionException;
 
@@ -14,12 +15,13 @@ import lombok.Setter;
 @Setter
 public class WeatherController implements UpdateI {
 
-    private Channel channel;
+    private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, "Warsaw,pl");
 
     @Override
     public void update() {
         try {
-            this.channel = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), "lodz, pl").execute("").get();
+            this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), "lodz,pl");
+            this.yahooWeatherService.execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -13,6 +13,7 @@ import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
 
 public class MoreInfoFragment extends Fragment implements UpdateI {
 
@@ -38,7 +39,13 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
-        Channel channel = SettingsSingleton.getInstance().getWeatherController().getChannel();
+        YahooWeatherData yahooWeatherData = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherData();
+
+        if (yahooWeatherData == null){
+            return;
+        }
+
+        Channel channel = yahooWeatherData.getQuery().getResults().getChannel();
 
         if (channel == null ){
             return;

@@ -26,17 +26,11 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        this.latitudeInput = (EditText) findViewById(R.id.latitudeInput);
-        this.longitudeInput = (EditText) findViewById(R.id.longitudeInput);
         this.refreshFrequencyInpt = (EditText) findViewById(R.id.refreshFrequencyInput);
         this.unitsSwitch = (Switch) findViewById(R.id.unitsSwitch);
 
-        this.latitudeInput.setText( SettingsSingleton.getInstance().getLatitude().toString() );
-        this.longitudeInput.setText( SettingsSingleton.getInstance().getLongitude().toString() );
         this.refreshFrequencyInpt.setText( SettingsSingleton.getInstance().getRefreshFrequency().toString() );
 
-        this.latitudeInput.addTextChangedListener(new CustomTextWatcher<>(SettingsSingleton.getInstance().getLatitude()) );
-        this.longitudeInput.addTextChangedListener( new CustomTextWatcher<>( SettingsSingleton.getInstance().getLongitude() ) );
         this.refreshFrequencyInpt.addTextChangedListener( new CustomTextWatcher<>( SettingsSingleton.getInstance().getRefreshFrequency() ) );
 
         this.unitsSwitch.setChecked( UNITS.Celsius == SettingsSingleton.getInstance().getUnits() ? true : false );

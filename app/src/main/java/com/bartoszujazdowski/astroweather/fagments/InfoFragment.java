@@ -12,6 +12,10 @@ import android.widget.TextView;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
+
+import java.util.Date;
 
 public class InfoFragment extends Fragment {
 
@@ -31,8 +35,6 @@ public class InfoFragment extends Fragment {
         this.longitudeInfoText = (TextView) view.findViewById(R.id.longitudeInfoText);
         this.timeInfoText = (TextView) view.findViewById(R.id.timeInfo);
 
-        SettingsSingleton.getInstance().update();
-
         this.runnable = new Runnable() {
             @Override
             public void run() {
@@ -48,9 +50,11 @@ public class InfoFragment extends Fragment {
 
     public void updateInfo(){
         try {
-            this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
-            this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
-            this.timeInfoText.setText(AstroUtils.converAstroDateTimeToDate(AstroUtils.getCurrentAstroDateTime()).toString());
+            YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
+
+            this.latitudeInfoText.setText( yahooWeatherService.getWoeid().getQuery().getResults().getPlace().getCentroid().getLatitude() );
+            this.longitudeInfoText.setText( yahooWeatherService.getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude() );
+            this.timeInfoText.setText(new Date().toString());
         }catch (NullPointerException e){
             e.printStackTrace();
         }
