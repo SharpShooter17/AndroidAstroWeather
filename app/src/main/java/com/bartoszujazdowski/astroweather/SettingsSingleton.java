@@ -3,6 +3,7 @@ package com.bartoszujazdowski.astroweather;
 import com.astrocalculator.AstroCalculator;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
+import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,8 +41,11 @@ public class SettingsSingleton {
     @Getter
     private WeatherController weatherController;
 
-    private SettingsSingleton(){
+    @Getter @Setter
+    private UNITS units;
 
+    private SettingsSingleton(){
+        this.units = UNITS.Celsius;
         this.latitude = new MutableNumber<>(new Float(0));
         this.longitude =  new MutableNumber<>(new Float(0));
         this.refreshFrequency = new MutableNumber<>(new Integer(60));

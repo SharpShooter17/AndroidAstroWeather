@@ -23,8 +23,7 @@ public class YahooWeatherService extends AsyncTask<String, Void, Channel> {
 
     private UNITS units;
     private String queryLocation;
-    private LOCATION loc;
-    private String location;
+    private LOCATION location;
 
     private YahooWeatherService(UNITS units){
         this.units = units;
@@ -32,13 +31,13 @@ public class YahooWeatherService extends AsyncTask<String, Void, Channel> {
 
     public YahooWeatherService(UNITS units, String text){
         this(units);
-        this.loc = LOCATION.TEXT;
+        this.location = LOCATION.TEXT;
         this.queryLocation = text;
     }
 
     public YahooWeatherService(UNITS units, Integer woeid){
         this(units);
-        this.loc = LOCATION.WOEID;
+        this.location = LOCATION.WOEID;
         this.queryLocation = woeid.toString();
     }
 
@@ -46,7 +45,7 @@ public class YahooWeatherService extends AsyncTask<String, Void, Channel> {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("select * from weather.forecast where woeid");
 
-        if ( loc == LOCATION.WOEID ){
+        if ( location == LOCATION.WOEID ){
             stringBuilder.append("=");
             stringBuilder.append(this.queryLocation);
         } else {

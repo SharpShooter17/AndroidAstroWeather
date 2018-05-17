@@ -19,7 +19,7 @@ public class WeatherController implements UpdateI {
     @Override
     public void update() {
         try {
-            this.channel = new YahooWeatherService(UNITS.Celsius, "lodz, pl").execute("").get();
+            this.channel = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), "lodz, pl").execute("").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

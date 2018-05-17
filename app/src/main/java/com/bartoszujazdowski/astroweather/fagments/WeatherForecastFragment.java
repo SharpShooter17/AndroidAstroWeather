@@ -42,7 +42,11 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
             this.forecastLL.removeAllViews();
 
             for (Forecast forecast : forecastList){
-                String str = forecast.getDate() + " - " + forecast.getDay() + " - " + forecast.getLow() + " - " + forecast.getHigh() + ", " + forecast.getText();
+                String str = forecast.getDate()
+                        + " - " + forecast.getDay() + " - "
+                        + forecast.getLow() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase() + " - "
+                        + forecast.getHigh() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase()  + ", "
+                        + forecast.getText();
                 TextView textView = new TextView(this.getContext());
                 textView.setText(str);
                 textView.setTextSize(COMPLEX_UNIT_SP, 18.0f);
