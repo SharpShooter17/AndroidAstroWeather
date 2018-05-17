@@ -47,9 +47,14 @@ public class SunFragment extends Fragment implements UpdateI {
         SettingsSingleton.getInstance().update();
         AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
 
-        this.sunriseText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getSunrise()).toString() );
-        this.sunsetText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getSunset()).toString() );
-        this.civilMorningText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightMorning()).toString());
-        this.civilEveningText.setText( AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightEvening()).toString() );
+        try {
+            this.sunriseText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getSunrise()).toString());
+            this.sunsetText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getSunset()).toString());
+            this.civilMorningText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightMorning()).toString());
+            this.civilEveningText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightEvening()).toString());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
     }
 }

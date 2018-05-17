@@ -1,6 +1,6 @@
 package com.bartoszujazdowski.astroweather.fagments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -47,9 +47,13 @@ public class InfoFragment extends Fragment {
     }
 
     public void updateInfo(){
-        this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
-        this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
-        this.timeInfoText.setText( AstroUtils.converAstroDateTimeToDate( AstroUtils.getCurrentAstroDateTime() ).toString() );
+        try {
+            this.latitudeInfoText.setText(SettingsSingleton.getInstance().getLatitude().toString());
+            this.longitudeInfoText.setText(SettingsSingleton.getInstance().getLongitude().toString());
+            this.timeInfoText.setText(AstroUtils.converAstroDateTimeToDate(AstroUtils.getCurrentAstroDateTime()).toString());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
 }

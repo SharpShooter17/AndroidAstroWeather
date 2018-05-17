@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.pojo.Channel;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.Channel;
 
 public class WeatherFragment extends Fragment implements UpdateI {
 
@@ -40,9 +40,12 @@ public class WeatherFragment extends Fragment implements UpdateI {
         if (channel == null) {
             return;
         }
-
-        this.cityTV.setText( channel.getLocation().getCity() );
-        this.temperatureTV.setText( channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature() );
-        this.pressureTV.setText( channel.getAtmosphere().getPressure() + channel.getUnits().getPressure() );
+        try {
+            this.cityTV.setText(channel.getLocation().getCity());
+            this.temperatureTV.setText(channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature());
+            this.pressureTV.setText(channel.getAtmosphere().getPressure() + channel.getUnits().getPressure());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

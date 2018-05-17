@@ -1,5 +1,5 @@
 
-package com.bartoszujazdowski.astroweather.pojo;
+package com.bartoszujazdowski.astroweather.yahooWeather.pojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

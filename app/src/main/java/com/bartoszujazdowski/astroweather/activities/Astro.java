@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.bartoszujazdowski.astroweather.Helpers.AstroStatePageAdapter;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.fagments.InfoFragment;
 import com.bartoszujazdowski.astroweather.fagments.SunFragment;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.Helpers.ZoomOutPageTransformer;
@@ -58,7 +59,14 @@ public class Astro extends FragmentActivity {
             }
         };
 
-        handler.postDelayed(runnable, 0);
+        handler.postDelayed(runnable, 100);
+    }
+
+    @Override
+    protected void onDestroy() {
+        this.handler.removeCallbacks(runnable);
+        this.handler.getLooper().quit();
+        super.onDestroy();
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -70,6 +78,7 @@ public class Astro extends FragmentActivity {
         MoreInfoFragment moreInfoFragment = new MoreInfoFragment();
         WeatherForecastFragment weatherForecastFragment = new WeatherForecastFragment();
 
+        adapter.addFragment(new InfoFragment(), "Info");
         adapter.addFragment(sunFragment, "Sun");
         adapter.addFragment(moonFragment, "Moon");
         adapter.addFragment(weatherFragment, "Weather");

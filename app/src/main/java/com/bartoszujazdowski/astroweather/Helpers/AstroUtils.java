@@ -16,6 +16,8 @@ import java.util.Date;
 
 public class AstroUtils {
 
+    private static final String directions[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
+
     public static AstroDateTime getCurrentAstroDateTime() {
         Date currentTime = Calendar.getInstance().getTime();
 
@@ -51,6 +53,10 @@ public class AstroUtils {
         Location location = LocationServices.getFusedLocationProviderClient(context).getLastLocation().getResult();
 
         return new AstroCalculator.Location(location.getLatitude(), location.getLongitude());
+    }
+
+    public static String getWindDirection(int dir){
+        return AstroUtils.directions[ (int)Math.round((  ((double)dir % 360) / 45)) % 8 ];
     }
 
 }
