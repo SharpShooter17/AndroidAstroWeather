@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.yahooWeather.pojo.Channel;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 
 public class WeatherFragment extends Fragment implements UpdateI {
 

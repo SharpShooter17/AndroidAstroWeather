@@ -12,7 +12,7 @@ import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.yahooWeather.pojo.Channel;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 
 public class MoreInfoFragment extends Fragment implements UpdateI {
 

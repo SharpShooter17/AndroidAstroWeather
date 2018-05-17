@@ -65,7 +65,6 @@ public class Astro extends FragmentActivity {
     @Override
     protected void onDestroy() {
         this.handler.removeCallbacks(runnable);
-        this.handler.getLooper().quit();
         super.onDestroy();
     }
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.yahooWeather.pojo.Forecast;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Forecast;
 
 import java.util.List;
 
