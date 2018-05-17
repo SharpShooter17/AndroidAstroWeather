@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 
 android:
-  components:
+    components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
     # - tools
@@ -21,6 +21,6 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-26  
   
- before_install:
- - chmod +x gradlew
+before_install:
+    - chmod +x gradlew
  
