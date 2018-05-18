@@ -23,5 +23,4 @@ android:
     - extra-android-support
     
 before_install:
-    - chmod +x ./gradlew build connectedCheck
- 
+    - chmod +x ./gradlew
