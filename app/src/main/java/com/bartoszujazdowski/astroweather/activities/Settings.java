@@ -2,11 +2,15 @@ package com.bartoszujazdowski.astroweather.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.bartoszujazdowski.astroweather.Helpers.CustomTextWatcher;
+import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
@@ -16,10 +20,13 @@ import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
  */
 
 public class Settings extends Activity {
-    private EditText latitudeInput;
-    private EditText longitudeInput;
     private EditText refreshFrequencyInpt;
     private Switch unitsSwitch;
+
+    private EditText cityInput;
+    private EditText ccInput;
+
+    private Button addToFavButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,9 @@ public class Settings extends Activity {
 
         this.refreshFrequencyInpt = (EditText) findViewById(R.id.refreshFrequencyInput);
         this.unitsSwitch = (Switch) findViewById(R.id.unitsSwitch);
+        this.cityInput = (EditText) findViewById(R.id.cityEditText);
+        this.ccInput = (EditText) findViewById(R.id.CCEditText);
+        this.addToFavButton = (Button) findViewById(R.id.addToFavButton);
 
         this.refreshFrequencyInpt.setText( SettingsSingleton.getInstance().getRefreshFrequency().toString() );
 
@@ -42,5 +52,17 @@ public class Settings extends Activity {
             }
         });
 
+        addToFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavouriteLocation favouriteLocation = new FavouriteLocation(cityInput.getText().toString(), ccInput.getText().toString());
+                SettingsSingleton.getInstance().getFavouriteLocations().add(favouriteLocation);
+
+                CharSequence msg = "City has been added to favourites";
+                Toast.makeText(Settings.this, msg, Toast.LENGTH_LONG).show();
+                cityInput.setText("");
+                ccInput.setText("");
+            }
+        });
     }
 }

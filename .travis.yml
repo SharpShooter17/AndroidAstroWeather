@@ -6,7 +6,7 @@ android:
     components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
-    # - tools
+    - tools
     # - platform-tools
 
     # The BuildTools version used by your project
@@ -20,7 +20,8 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-26  
-  
+    - extra-android-support
+    
 before_install:
-    - chmod +x gradlew
+    - chmod +x ./gradlew build connectedCheck
  

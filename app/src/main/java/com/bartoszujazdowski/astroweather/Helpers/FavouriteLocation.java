@@ -10,4 +10,9 @@ import lombok.NoArgsConstructor;
 public class FavouriteLocation {
     private String country;
     private String city;
+
+    @Override
+    public String toString(){
+        return city + "," + country;
+    }
 }
