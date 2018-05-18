@@ -18,6 +18,9 @@ android {
     }
     compileOptions {
     }
+	lintOptions {
+		abortOnError false
+	}
 }
 
 dependencies {
