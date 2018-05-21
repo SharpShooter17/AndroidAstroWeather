@@ -45,9 +45,8 @@ public class SunFragment extends Fragment implements UpdateI {
     @Override
     public void update(){
         SettingsSingleton.getInstance().update();
-        AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
-
         try {
+            AstroCalculator.SunInfo sunInfo = SettingsSingleton.getInstance().getAstroCalculator().getSunInfo();
             this.sunriseText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getSunrise()).toString());
             this.sunsetText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getSunset()).toString());
             this.civilMorningText.setText(AstroUtils.converAstroDateTimeToDate(sunInfo.getTwilightMorning()).toString());

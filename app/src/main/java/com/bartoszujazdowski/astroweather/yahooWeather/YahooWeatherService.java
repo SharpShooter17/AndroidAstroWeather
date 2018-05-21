@@ -18,12 +18,14 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
 
     private static final String base_URL= "https://query.yahooapis.com/v1/public/yql?format=json&q=";
 
     @Getter
+    @Setter
     private YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = new YahooWeatherDataAndWoeid();
 
     private String woeidUrl;

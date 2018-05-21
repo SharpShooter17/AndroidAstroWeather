@@ -1,5 +1,9 @@
 package com.bartoszujazdowski.astroweather;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.astrocalculator.AstroCalculator;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
@@ -70,6 +74,11 @@ public class SettingsSingleton {
     }
 
     public void update(){
+
+        if ( getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid() == null ){
+            return;
+        }
+
         Place place = getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid();
 
         if (place == null){

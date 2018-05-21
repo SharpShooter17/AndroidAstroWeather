@@ -20,6 +20,7 @@ import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.activities.Astro;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,7 +62,7 @@ public class InfoFragment extends Fragment {
         this.locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SettingsSingleton.getInstance().getWeatherController().setCity(spinnerArrayAdapter.getItem(position).toString());
+                SettingsSingleton.getInstance().getWeatherController().setLocation(spinnerArrayAdapter.getItem(position));
                 ((Astro)getActivity()).updateAllNow();
             }
 
@@ -88,8 +89,10 @@ public class InfoFragment extends Fragment {
         try {
             YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
 
-            this.latitudeInfoText.setText( yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid().getCentroid().getLatitude() );
-            this.longitudeInfoText.setText( yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid().getCentroid().getLongitude() );
+            Place place = yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid();
+
+            this.latitudeInfoText.setText( place.getCentroid().getLatitude() );
+            this.longitudeInfoText.setText( place.getCentroid().getLongitude() );
             this.timeInfoText.setText(new Date().toString());
         }catch (NullPointerException e){
             e.printStackTrace();

@@ -12,6 +12,7 @@ import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
 
@@ -39,17 +40,12 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
-        Channel channel = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData();
-
-        if (channel == null){
-            return;
-        }
-
         try {
-            this.humidityTV.setText(channel.getAtmosphere().getHumidity() + "%");
-            this.visabilityTV.setText(channel.getAtmosphere().getVisibility() + channel.getUnits().getDistance());
-            this.windDirectionTV.setText(AstroUtils.getWindDirection( Integer.parseInt(channel.getWind().getDirection()) ));
-            this.windForceTV.setText(channel.getWind().getSpeed() + channel.getUnits().getSpeed());
+            YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid();
+            this.humidityTV.setText(yahooWeatherDataAndWoeid.getYahooWeatherData().getAtmosphere().getHumidity() + "%");
+            this.visabilityTV.setText(yahooWeatherDataAndWoeid.getYahooWeatherData().getAtmosphere().getVisibility() + yahooWeatherDataAndWoeid.getYahooWeatherData().getUnits().getDistance());
+            this.windDirectionTV.setText(AstroUtils.getWindDirection( Integer.parseInt(yahooWeatherDataAndWoeid.getYahooWeatherData().getWind().getDirection()) ));
+            this.windForceTV.setText(yahooWeatherDataAndWoeid.getYahooWeatherData().getWind().getSpeed() + yahooWeatherDataAndWoeid.getYahooWeatherData().getUnits().getSpeed());
         } catch (NullPointerException e){
             e.printStackTrace();
         }

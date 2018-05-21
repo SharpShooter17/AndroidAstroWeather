@@ -1,5 +1,6 @@
 package com.bartoszujazdowski.astroweather;
 
+import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
@@ -16,26 +17,30 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeatherController implements UpdateI {
-    private String city = new String("New York,USA");
-    private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, this.city);
+    FavouriteLocation location = new FavouriteLocation("Lodz", "PL");
+    private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, this.location.toString());
 
     @Override
     public void update() {
-        try {
-            this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), this.city);
-            this.yahooWeatherService.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
 
-        YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.copyToRealm(this.yahooWeatherService.getYahooWeatherDataAndWoeid());
+        if ( AndroidUtils.isOnline() ) {
+            try {
+                this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), this.location.toString());
+                this.yahooWeatherService.execute().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
 
-        realm.commitTransaction();
+            realm.beginTransaction();
 
+            YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.copyToRealm(this.yahooWeatherService.getYahooWeatherDataAndWoeid());
+
+            realm.commitTransaction();
+        } else {
+            this.yahooWeatherService.setYahooWeatherDataAndWoeid( realm.where(YahooWeatherDataAndWoeid.class).equalTo("woeid.name", this.location.getCity()).findFirst() );
+        }
     }
 }
