@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bartoszujazdowski.astroweather.AndroidUtils;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.R;
@@ -34,6 +35,7 @@ public class InfoFragment extends Fragment {
     private Spinner locationSpinner;
     private ArrayAdapter<FavouriteLocation> spinnerArrayAdapter;
     private Button refreshButton;
+    private TextView modeTextView;
 
     private Handler handler = new Handler();
     private Runnable runnable;
@@ -48,6 +50,7 @@ public class InfoFragment extends Fragment {
         this.timeInfoText = (TextView) view.findViewById(R.id.timeInfo);
         this.locationSpinner = (Spinner) view.findViewById(R.id.loationSpinner);
         this.refreshButton = (Button) view.findViewById(R.id.refreshButton);
+        this.modeTextView = (TextView) view.findViewById(R.id.modeTextView);
 
         this.spinnerArrayAdapter = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, SettingsSingleton.getInstance().getFavouriteLocations());
         this.locationSpinner.setAdapter(this.spinnerArrayAdapter);
@@ -86,6 +89,9 @@ public class InfoFragment extends Fragment {
     }
 
     public void updateInfo(){
+
+        this.modeTextView.setText(AndroidUtils.isOnline() ? "OnLine" : "OffLine");
+
         try {
             YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
 
