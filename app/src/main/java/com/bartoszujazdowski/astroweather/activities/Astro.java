@@ -108,4 +108,8 @@ public class Astro extends FragmentActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
+
+    public void updateAllNow(){
+        this.handler.postDelayed(this.runnable, 0);
+    }
 }

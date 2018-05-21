@@ -27,7 +27,19 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16px">
+                android:layout_margin="16dp">
+
+                <Spinner
+                    android:id="@+id/loationSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp">
 
                 <TextView
                     android:id="@+id/textView"
@@ -49,7 +61,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16px">
+                android:layout_margin="16dp">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -71,7 +83,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16px">
+                android:layout_margin="16dp">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -88,6 +100,20 @@
                     android:layout_weight="1"
                     android:text="TextView"
                     android:textSize="18dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp" >
+
+                <Button
+                    android:id="@+id/refreshButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Refresh" />
             </TableRow>
 
         </TableLayout>

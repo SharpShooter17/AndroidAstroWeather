@@ -47,7 +47,7 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
                         + forecast.getLow() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase() + " - "
                         + forecast.getHigh() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase()  + ", "
                         + forecast.getText();
-                TextView textView = new TextView(this.getContext());
+                TextView textView = new TextView( getActivity() );
                 textView.setText(str);
                 textView.setTextSize(COMPLEX_UNIT_SP, 18.0f);
                 textView.setPadding(16, 16, 16, 16);

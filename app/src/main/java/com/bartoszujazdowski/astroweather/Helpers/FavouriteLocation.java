@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FavouriteLocation {
-    private String country;
     private String city;
+    private String country;
 
     @Override
     public String toString(){
-        return city + "," + country;
+        return this.city + "," + this.country;
     }
 }

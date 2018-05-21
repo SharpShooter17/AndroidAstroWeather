@@ -14,13 +14,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeatherController implements UpdateI {
-
+    private String city = new String("New York,USA");
     private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, "Warsaw,pl");
 
     @Override
     public void update() {
         try {
-            this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), "lodz,pl");
+            this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), this.city);
             this.yahooWeatherService.execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
