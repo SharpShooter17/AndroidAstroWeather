@@ -4,12 +4,16 @@ import com.astrocalculator.AstroCalculator;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
+import com.bartoszujazdowski.astroweather.activities.Menu;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,13 +35,27 @@ public class SettingsSingleton {
     @Getter
     private WeatherController weatherController;
 
-    @Getter
     private List<FavouriteLocation> favouriteLocations;
 
     @Getter @Setter
     private UNITS units;
 
     private SettingsSingleton(){
+        Realm.init(Menu.getContext());
+        Realm.setDefaultConfiguration(new RealmConfiguration.Builder().
+                deleteRealmIfMigrationNeeded().
+                initialData(new Realm.Transaction() {
+                                                        @Override
+                                                        public void execute(Realm realm) {
+                                                            FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
+                                                            favouriteLocation.setCountry("en");
+                                                            favouriteLocation.setCity("London");
+                                                        }
+                                                    }).build());
+        Realm realm = Realm.getDefaultInstance();
+
+        this.favouriteLocations = new ArrayList<>(realm.where(FavouriteLocation.class).findAll());
+
         this.units = UNITS.Celsius;
         this.refreshFrequency = new MutableNumber<>(new Integer(60));
 
@@ -46,8 +64,6 @@ public class SettingsSingleton {
         this.astroCalculator = new AstroCalculator(
                 AstroUtils.getCurrentAstroDateTime(),
                 new AstroCalculator.Location(0, 0));
-
-        this.favouriteLocations = new ArrayList<>();
     }
 
     public void update(){
@@ -68,5 +84,24 @@ public class SettingsSingleton {
         }
 
         return SettingsSingleton.instance;
+    }
+
+    public final List<FavouriteLocation> getFavouriteLocations(){
+        return this.favouriteLocations;
+    }
+
+    public void addFavouriteLocation(String city, String code){
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+
+        FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
+        favouriteLocation.setCity(city);
+        favouriteLocation.setCountry(code);
+        realm.insert( favouriteLocation );
+
+        realm.commitTransaction();
+
+        this.favouriteLocations.add(favouriteLocation);
     }
 }

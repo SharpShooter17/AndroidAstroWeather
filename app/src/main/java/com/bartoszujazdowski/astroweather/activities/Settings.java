@@ -55,7 +55,7 @@ public class Settings extends Activity {
         addToFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingsSingleton.getInstance().getFavouriteLocations().add(new FavouriteLocation(cityInput.getText().toString(), ccInput.getText().toString()));
+                SettingsSingleton.getInstance().addFavouriteLocation(cityInput.getText().toString(), ccInput.getText().toString());
 
                 CharSequence msg = "City has been added to favourites";
                 Toast.makeText(Settings.this, msg, Toast.LENGTH_LONG).show();
