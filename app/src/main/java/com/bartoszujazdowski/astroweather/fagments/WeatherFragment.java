@@ -37,13 +37,7 @@ public class WeatherFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
-        YahooWeatherData yahooWeatherData = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData();
-
-        if (yahooWeatherData == null){
-            return;
-        }
-
-        Channel channel = yahooWeatherData.getQuery().getResults().getChannel();
+        Channel channel = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData();
 
         if (channel == null) {
             return;

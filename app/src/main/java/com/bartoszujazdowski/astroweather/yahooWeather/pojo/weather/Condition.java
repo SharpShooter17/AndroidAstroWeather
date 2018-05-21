@@ -1,91 +1,52 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Condition {
+public class Condition extends RealmObject {
+    public static final String CODE = "code";
+    public static final String DATE = "date";
+    public static final String TEMP = "temp";
+    public static final String TEXT = "text";
 
+    @SerializedName("code")
     private String code;
+    @SerializedName("date")
     private String date;
+    @SerializedName("temp")
     private String temp;
+    @SerializedName("text")
     private String text;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Condition() {
-    }
+    public Condition(){ }
 
-    /**
-     * 
-     * @param text
-     * @param temp
-     * @param code
-     * @param date
-     */
-    public Condition(String code, String date, String temp, String text) {
-        super();
+    public Condition setCode(String code){
         this.code = code;
+        return this;
+    }
+    public String getCode(){
+        return this.code;
+    }
+    public Condition setDate(String date){
         this.date = date;
+        return this;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public Condition setTemp(String temp){
         this.temp = temp;
+        return this;
+    }
+    public String getTemp(){
+        return this.temp;
+    }
+    public Condition setText(String text){
         this.text = text;
+        return this;
     }
-
-    public String getCode() {
-        return code;
+    public String getText(){
+        return this.text;
     }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("code", code).append("date", date).append("temp", temp).append("text", text).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(text).append(temp).append(code).append(date).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Condition) == false) {
-            return false;
-        }
-        Condition rhs = ((Condition) other);
-        return new EqualsBuilder().append(text, rhs.text).append(temp, rhs.temp).append(code, rhs.code).append(date, rhs.date).isEquals();
-    }
-
 }
+

@@ -1,69 +1,32 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class PlaceTypeName {
+public class PlaceTypeName extends RealmObject {
+    public static final String CODE = "code";
+    public static final String CONTENT = "content";
 
+    @SerializedName("code")
     private String code;
+    @SerializedName("content")
     private String content;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public PlaceTypeName() {
-    }
+    public PlaceTypeName(){ }
 
-    /**
-     * 
-     * @param content
-     * @param code
-     */
-    public PlaceTypeName(String code, String content) {
-        super();
+    public PlaceTypeName setCode(String code){
         this.code = code;
+        return this;
+    }
+    public String getCode(){
+        return this.code;
+    }
+    public PlaceTypeName setContent(String content){
         this.content = content;
+        return this;
     }
-
-    public String getCode() {
-        return code;
+    public String getContent(){
+        return this.content;
     }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("code", code).append("content", content).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(content).append(code).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof PlaceTypeName) == false) {
-            return false;
-        }
-        PlaceTypeName rhs = ((PlaceTypeName) other);
-        return new EqualsBuilder().append(content, rhs.content).append(code, rhs.code).isEquals();
-    }
-
 }
+

@@ -1,80 +1,42 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Postal {
+public class Postal extends RealmObject {
+    public static final String TYPE = "type";
+    public static final String WOEID = "woeid";
+    public static final String CONTENT = "content";
 
+    @SerializedName("type")
     private String type;
+    @SerializedName("woeid")
     private String woeid;
+    @SerializedName("content")
     private String content;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Postal() {
-    }
+    public Postal(){ }
 
-    /**
-     * 
-     * @param content
-     * @param woeid
-     * @param type
-     */
-    public Postal(String type, String woeid, String content) {
-        super();
+    public Postal setType(String type){
         this.type = type;
+        return this;
+    }
+    public String getType(){
+        return this.type;
+    }
+    public Postal setWoeid(String woeid){
         this.woeid = woeid;
+        return this;
+    }
+    public String getWoeid(){
+        return this.woeid;
+    }
+    public Postal setContent(String content){
         this.content = content;
+        return this;
     }
-
-    public String getType() {
-        return type;
+    public String getContent(){
+        return this.content;
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getWoeid() {
-        return woeid;
-    }
-
-    public void setWoeid(String woeid) {
-        this.woeid = woeid;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("type", type).append("woeid", woeid).append("content", content).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(content).append(woeid).append(type).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Postal) == false) {
-            return false;
-        }
-        Postal rhs = ((Postal) other);
-        return new EqualsBuilder().append(content, rhs.content).append(woeid, rhs.woeid).append(type, rhs.type).isEquals();
-    }
-
 }
+

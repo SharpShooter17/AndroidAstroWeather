@@ -87,12 +87,12 @@ public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
             URL url = new URL( this.weatherUrl );
             URLConnection urlConnection = url.openConnection();
             BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
-            this.yahooWeatherDataAndWoeid.setYahooWeatherData(new Gson().fromJson(bufferedReader, YahooWeatherData.class));
+            this.yahooWeatherDataAndWoeid.setYahooWeatherData(new Gson().fromJson(bufferedReader, YahooWeatherData.class).getQuery().getResults().getChannel());
 
             url = new URL( this.woeidUrl );
             urlConnection = url.openConnection();
             bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
-            this.yahooWeatherDataAndWoeid.setWoeid(new Gson().fromJson(bufferedReader, Woeid.class));
+            this.yahooWeatherDataAndWoeid.setWoeid(new Gson().fromJson(bufferedReader, Woeid.class).getQuery().getResults().getPlace());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

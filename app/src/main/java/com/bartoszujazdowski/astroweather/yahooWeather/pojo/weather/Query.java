@@ -1,91 +1,52 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
 public class Query {
+    public static final String COUNT = "count";
+    public static final String CREATED = "created";
+    public static final String LANG = "lang";
+    public static final String RESULTS = "results";
 
-    private Integer count;
+    @SerializedName("count")
+    private int count;
+    @SerializedName("created")
     private String created;
+    @SerializedName("lang")
     private String lang;
+    @SerializedName("results")
     private Results results;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Query() {
-    }
+    public Query(){ }
 
-    /**
-     * 
-     * @param results
-     * @param count
-     * @param created
-     * @param lang
-     */
-    public Query(Integer count, String created, String lang, Results results) {
-        super();
+    public Query setCount(int count){
         this.count = count;
+        return this;
+    }
+    public int getCount(){
+        return this.count;
+    }
+    public Query setCreated(String created){
         this.created = created;
+        return this;
+    }
+    public String getCreated(){
+        return this.created;
+    }
+    public Query setLang(String lang){
         this.lang = lang;
+        return this;
+    }
+    public String getLang(){
+        return this.lang;
+    }
+    public Query setResults(Results results){
         this.results = results;
+        return this;
     }
-
-    public Integer getCount() {
-        return count;
+    public Results getResults(){
+        return this.results;
     }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public Results getResults() {
-        return results;
-    }
-
-    public void setResults(Results results) {
-        this.results = results;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("count", count).append("created", created).append("lang", lang).append("results", results).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(results).append(count).append(created).append(lang).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Query) == false) {
-            return false;
-        }
-        Query rhs = ((Query) other);
-        return new EqualsBuilder().append(results, rhs.results).append(count, rhs.count).append(created, rhs.created).append(lang, rhs.lang).isEquals();
-    }
-
 }
+

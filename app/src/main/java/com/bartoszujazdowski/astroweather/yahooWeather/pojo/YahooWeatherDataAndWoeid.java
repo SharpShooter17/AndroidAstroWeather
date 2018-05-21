@@ -1,6 +1,8 @@
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo;
 
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import io.realm.RealmObject;
@@ -12,9 +14,10 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class YahooWeatherDataAndWoeid {
+@RealmClass
+public class YahooWeatherDataAndWoeid extends RealmObject{
     @Getter @Setter
-    private Woeid woeid;
+    private Place woeid;
     @Getter @Setter
-    private YahooWeatherData yahooWeatherData;
+    private Channel yahooWeatherData;
 }

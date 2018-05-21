@@ -1,69 +1,32 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Astronomy {
+public class Astronomy extends RealmObject {
+    public static final String SUNRISE = "sunrise";
+    public static final String SUNSET = "sunset";
 
+    @SerializedName("sunrise")
     private String sunrise;
+    @SerializedName("sunset")
     private String sunset;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Astronomy() {
-    }
+    public Astronomy(){ }
 
-    /**
-     * 
-     * @param sunset
-     * @param sunrise
-     */
-    public Astronomy(String sunrise, String sunset) {
-        super();
+    public Astronomy setSunrise(String sunrise){
         this.sunrise = sunrise;
+        return this;
+    }
+    public String getSunrise(){
+        return this.sunrise;
+    }
+    public Astronomy setSunset(String sunset){
         this.sunset = sunset;
+        return this;
     }
-
-    public String getSunrise() {
-        return sunrise;
+    public String getSunset(){
+        return this.sunset;
     }
-
-    public void setSunrise(String sunrise) {
-        this.sunrise = sunrise;
-    }
-
-    public String getSunset() {
-        return sunset;
-    }
-
-    public void setSunset(String sunset) {
-        this.sunset = sunset;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("sunrise", sunrise).append("sunset", sunset).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(sunset).append(sunrise).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Astronomy) == false) {
-            return false;
-        }
-        Astronomy rhs = ((Astronomy) other);
-        return new EqualsBuilder().append(sunset, rhs.sunset).append(sunrise, rhs.sunrise).isEquals();
-    }
-
 }
+

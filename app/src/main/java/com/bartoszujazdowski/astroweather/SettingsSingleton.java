@@ -6,6 +6,8 @@ import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
 import com.bartoszujazdowski.astroweather.activities.Menu;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class SettingsSingleton {
                                                             FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
                                                             favouriteLocation.setCountry("en");
                                                             favouriteLocation.setCity("London");
+                                                            YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.createObject(YahooWeatherDataAndWoeid.class);
                                                         }
                                                     }).build());
         Realm realm = Realm.getDefaultInstance();
@@ -67,15 +70,15 @@ public class SettingsSingleton {
     }
 
     public void update(){
-        Woeid woeid = getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid();
+        Place place = getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid();
 
-        if (woeid == null){
+        if (place == null){
             return;
         }
 
         this.astroCalculator.setDateTime(AstroUtils.getCurrentAstroDateTime());
-        this.astroCalculator.setLocation(new AstroCalculator.Location(Double.parseDouble(woeid.getQuery().getResults().getPlace().getCentroid().getLatitude()),
-                Double.parseDouble(getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude())));
+        this.astroCalculator.setLocation(new AstroCalculator.Location(Double.parseDouble(place.getCentroid().getLatitude()),
+                Double.parseDouble(place.getCentroid().getLongitude())));
     }
 
     static public SettingsSingleton getInstance(){

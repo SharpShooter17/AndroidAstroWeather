@@ -1,58 +1,22 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Guid {
+public class Guid extends RealmObject {
+    public static final String IS_PERMA_LINK = "isPermaLink";
 
+    @SerializedName("isPermaLink")
     private String isPermaLink;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Guid() {
-    }
+    public Guid(){ }
 
-    /**
-     * 
-     * @param isPermaLink
-     */
-    public Guid(String isPermaLink) {
-        super();
+    public Guid setIsPermaLink(String isPermaLink){
         this.isPermaLink = isPermaLink;
+        return this;
     }
-
-    public String getIsPermaLink() {
-        return isPermaLink;
+    public String getIsPermaLink(){
+        return this.isPermaLink;
     }
-
-    public void setIsPermaLink(String isPermaLink) {
-        this.isPermaLink = isPermaLink;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("isPermaLink", isPermaLink).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(isPermaLink).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Guid) == false) {
-            return false;
-        }
-        Guid rhs = ((Guid) other);
-        return new EqualsBuilder().append(isPermaLink, rhs.isPermaLink).isEquals();
-    }
-
 }
+

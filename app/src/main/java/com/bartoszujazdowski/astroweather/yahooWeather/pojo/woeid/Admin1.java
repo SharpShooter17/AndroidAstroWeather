@@ -1,91 +1,52 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Admin1 {
+public class Admin1 extends RealmObject {
+    public static final String CODE = "code";
+    public static final String TYPE = "type";
+    public static final String WOEID = "woeid";
+    public static final String CONTENT = "content";
 
+    @SerializedName("code")
     private String code;
+    @SerializedName("type")
     private String type;
+    @SerializedName("woeid")
     private String woeid;
+    @SerializedName("content")
     private String content;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Admin1() {
-    }
+    public Admin1(){ }
 
-    /**
-     * 
-     * @param content
-     * @param woeid
-     * @param code
-     * @param type
-     */
-    public Admin1(String code, String type, String woeid, String content) {
-        super();
+    public Admin1 setCode(String code){
         this.code = code;
+        return this;
+    }
+    public String getCode(){
+        return this.code;
+    }
+    public Admin1 setType(String type){
         this.type = type;
+        return this;
+    }
+    public String getType(){
+        return this.type;
+    }
+    public Admin1 setWoeid(String woeid){
         this.woeid = woeid;
+        return this;
+    }
+    public String getWoeid(){
+        return this.woeid;
+    }
+    public Admin1 setContent(String content){
         this.content = content;
+        return this;
     }
-
-    public String getCode() {
-        return code;
+    public String getContent(){
+        return this.content;
     }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getWoeid() {
-        return woeid;
-    }
-
-    public void setWoeid(String woeid) {
-        this.woeid = woeid;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("code", code).append("type", type).append("woeid", woeid).append("content", content).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(content).append(woeid).append(code).append(type).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Admin1) == false) {
-            return false;
-        }
-        Admin1 rhs = ((Admin1) other);
-        return new EqualsBuilder().append(content, rhs.content).append(woeid, rhs.woeid).append(code, rhs.code).append(type, rhs.type).isEquals();
-    }
-
 }
+

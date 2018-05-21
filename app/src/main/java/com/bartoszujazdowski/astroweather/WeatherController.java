@@ -2,12 +2,14 @@ package com.bartoszujazdowski.astroweather;
 
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import java.util.concurrent.ExecutionException;
 
+import io.realm.Realm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +29,13 @@ public class WeatherController implements UpdateI {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.copyToRealm(this.yahooWeatherService.getYahooWeatherDataAndWoeid());
+
+        realm.commitTransaction();
+
     }
 }

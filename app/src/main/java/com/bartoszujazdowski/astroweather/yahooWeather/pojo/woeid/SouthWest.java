@@ -1,69 +1,32 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class SouthWest {
+public class SouthWest extends RealmObject {
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
 
+    @SerializedName("latitude")
     private String latitude;
+    @SerializedName("longitude")
     private String longitude;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public SouthWest() {
-    }
+    public SouthWest(){ }
 
-    /**
-     * 
-     * @param longitude
-     * @param latitude
-     */
-    public SouthWest(String latitude, String longitude) {
-        super();
+    public SouthWest setLatitude(String latitude){
         this.latitude = latitude;
+        return this;
+    }
+    public String getLatitude(){
+        return this.latitude;
+    }
+    public SouthWest setLongitude(String longitude){
         this.longitude = longitude;
+        return this;
     }
-
-    public String getLatitude() {
-        return latitude;
+    public String getLongitude(){
+        return this.longitude;
     }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("latitude", latitude).append("longitude", longitude).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(longitude).append(latitude).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof SouthWest) == false) {
-            return false;
-        }
-        SouthWest rhs = ((SouthWest) other);
-        return new EqualsBuilder().append(longitude, rhs.longitude).append(latitude, rhs.latitude).isEquals();
-    }
-
 }
+

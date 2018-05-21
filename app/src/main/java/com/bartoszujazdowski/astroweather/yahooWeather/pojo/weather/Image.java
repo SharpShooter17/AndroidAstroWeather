@@ -1,102 +1,62 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Image {
+public class Image extends RealmObject {
+    public static final String TITLE = "title";
+    public static final String WIDTH = "width";
+    public static final String HEIGHT = "height";
+    public static final String LINK = "link";
+    public static final String URL = "url";
 
+    @SerializedName("title")
     private String title;
+    @SerializedName("width")
     private String width;
+    @SerializedName("height")
     private String height;
+    @SerializedName("link")
     private String link;
+    @SerializedName("url")
     private String url;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Image() {
-    }
+    public Image(){ }
 
-    /**
-     * 
-     * @param title
-     * @param height
-     * @param link
-     * @param width
-     * @param url
-     */
-    public Image(String title, String width, String height, String link, String url) {
-        super();
+    public Image setTitle(String title){
         this.title = title;
+        return this;
+    }
+    public String getTitle(){
+        return this.title;
+    }
+    public Image setWidth(String width){
         this.width = width;
+        return this;
+    }
+    public String getWidth(){
+        return this.width;
+    }
+    public Image setHeight(String height){
         this.height = height;
+        return this;
+    }
+    public String getHeight(){
+        return this.height;
+    }
+    public Image setLink(String link){
         this.link = link;
+        return this;
+    }
+    public String getLink(){
+        return this.link;
+    }
+    public Image setUrl(String url){
         this.url = url;
+        return this;
     }
-
-    public String getTitle() {
-        return title;
+    public String getUrl(){
+        return this.url;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getWidth() {
-        return width;
-    }
-
-    public void setWidth(String width) {
-        this.width = width;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("title", title).append("width", width).append("height", height).append("link", link).append("url", url).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(title).append(height).append(link).append(width).append(url).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Image) == false) {
-            return false;
-        }
-        Image rhs = ((Image) other);
-        return new EqualsBuilder().append(title, rhs.title).append(height, rhs.height).append(link, rhs.link).append(width, rhs.width).append(url, rhs.url).isEquals();
-    }
-
 }
+

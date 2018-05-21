@@ -1,80 +1,42 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Location {
+public class Location extends RealmObject {
+    public static final String CITY = "city";
+    public static final String COUNTRY = "country";
+    public static final String REGION = "region";
 
+    @SerializedName("city")
     private String city;
+    @SerializedName("country")
     private String country;
+    @SerializedName("region")
     private String region;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Location() {
-    }
+    public Location(){ }
 
-    /**
-     * 
-     * @param region
-     * @param country
-     * @param city
-     */
-    public Location(String city, String country, String region) {
-        super();
+    public Location setCity(String city){
         this.city = city;
+        return this;
+    }
+    public String getCity(){
+        return this.city;
+    }
+    public Location setCountry(String country){
         this.country = country;
+        return this;
+    }
+    public String getCountry(){
+        return this.country;
+    }
+    public Location setRegion(String region){
         this.region = region;
+        return this;
     }
-
-    public String getCity() {
-        return city;
+    public String getRegion(){
+        return this.region;
     }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("city", city).append("country", country).append("region", region).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(region).append(country).append(city).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Location) == false) {
-            return false;
-        }
-        Location rhs = ((Location) other);
-        return new EqualsBuilder().append(region, rhs.region).append(country, rhs.country).append(city, rhs.city).isEquals();
-    }
-
 }
+

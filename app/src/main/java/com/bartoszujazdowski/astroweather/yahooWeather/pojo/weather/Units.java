@@ -1,91 +1,52 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Units {
+public class Units extends RealmObject {
+    public static final String DISTANCE = "distance";
+    public static final String PRESSURE = "pressure";
+    public static final String SPEED = "speed";
+    public static final String TEMPERATURE = "temperature";
 
+    @SerializedName("distance")
     private String distance;
+    @SerializedName("pressure")
     private String pressure;
+    @SerializedName("speed")
     private String speed;
+    @SerializedName("temperature")
     private String temperature;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Units() {
-    }
+    public Units(){ }
 
-    /**
-     * 
-     * @param distance
-     * @param pressure
-     * @param speed
-     * @param temperature
-     */
-    public Units(String distance, String pressure, String speed, String temperature) {
-        super();
+    public Units setDistance(String distance){
         this.distance = distance;
+        return this;
+    }
+    public String getDistance(){
+        return this.distance;
+    }
+    public Units setPressure(String pressure){
         this.pressure = pressure;
+        return this;
+    }
+    public String getPressure(){
+        return this.pressure;
+    }
+    public Units setSpeed(String speed){
         this.speed = speed;
+        return this;
+    }
+    public String getSpeed(){
+        return this.speed;
+    }
+    public Units setTemperature(String temperature){
         this.temperature = temperature;
+        return this;
     }
-
-    public String getDistance() {
-        return distance;
+    public String getTemperature(){
+        return this.temperature;
     }
-
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
-
-    public String getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(String pressure) {
-        this.pressure = pressure;
-    }
-
-    public String getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(String speed) {
-        this.speed = speed;
-    }
-
-    public String getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("distance", distance).append("pressure", pressure).append("speed", speed).append("temperature", temperature).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(distance).append(pressure).append(speed).append(temperature).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Units) == false) {
-            return false;
-        }
-        Units rhs = ((Units) other);
-        return new EqualsBuilder().append(distance, rhs.distance).append(pressure, rhs.pressure).append(speed, rhs.speed).append(temperature, rhs.temperature).isEquals();
-    }
-
 }
+

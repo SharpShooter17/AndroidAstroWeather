@@ -1,113 +1,72 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Forecast {
+public class Forecast extends RealmObject {
+    public static final String CODE = "code";
+    public static final String DATE = "date";
+    public static final String DAY = "day";
+    public static final String HIGH = "high";
+    public static final String LOW = "low";
+    public static final String TEXT = "text";
 
+    @SerializedName("code")
     private String code;
+    @SerializedName("date")
     private String date;
+    @SerializedName("day")
     private String day;
+    @SerializedName("high")
     private String high;
+    @SerializedName("low")
     private String low;
+    @SerializedName("text")
     private String text;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Forecast() {
-    }
+    public Forecast(){ }
 
-    /**
-     * 
-     * @param text
-     * @param high
-     * @param day
-     * @param code
-     * @param low
-     * @param date
-     */
-    public Forecast(String code, String date, String day, String high, String low, String text) {
-        super();
+    public Forecast setCode(String code){
         this.code = code;
+        return this;
+    }
+    public String getCode(){
+        return this.code;
+    }
+    public Forecast setDate(String date){
         this.date = date;
+        return this;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public Forecast setDay(String day){
         this.day = day;
+        return this;
+    }
+    public String getDay(){
+        return this.day;
+    }
+    public Forecast setHigh(String high){
         this.high = high;
+        return this;
+    }
+    public String getHigh(){
+        return this.high;
+    }
+    public Forecast setLow(String low){
         this.low = low;
+        return this;
+    }
+    public String getLow(){
+        return this.low;
+    }
+    public Forecast setText(String text){
         this.text = text;
+        return this;
     }
-
-    public String getCode() {
-        return code;
+    public String getText(){
+        return this.text;
     }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public String getHigh() {
-        return high;
-    }
-
-    public void setHigh(String high) {
-        this.high = high;
-    }
-
-    public String getLow() {
-        return low;
-    }
-
-    public void setLow(String low) {
-        this.low = low;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("code", code).append("date", date).append("day", day).append("high", high).append("low", low).append("text", text).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(text).append(high).append(day).append(code).append(low).append(date).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Forecast) == false) {
-            return false;
-        }
-        Forecast rhs = ((Forecast) other);
-        return new EqualsBuilder().append(text, rhs.text).append(high, rhs.high).append(day, rhs.day).append(code, rhs.code).append(low, rhs.low).append(date, rhs.date).isEquals();
-    }
-
 }
+

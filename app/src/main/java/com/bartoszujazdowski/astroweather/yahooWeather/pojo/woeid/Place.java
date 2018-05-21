@@ -1,256 +1,182 @@
-
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
 
-public class Place {
+public class Place extends RealmObject {
+    public static final String LANG = "lang";
+    public static final String XMLNS = "xmlns";
+    public static final String YAHOO = "yahoo";
+    public static final String URI = "uri";
+    public static final String WOEID = "woeid";
+    public static final String PLACE_TYPE_NAME = "placeTypeName";
+    public static final String NAME = "name";
+    public static final String COUNTRY = "country";
+    public static final String ADMIN1 = "admin1";
+    public static final String ADMIN2 = "admin2";
+    public static final String LOCALITY1 = "locality1";
+    public static final String POSTAL = "postal";
+    public static final String CENTROID = "centroid";
+    public static final String BOUNDING_BOX = "boundingBox";
+    public static final String AREA_RANK = "areaRank";
+    public static final String POP_RANK = "popRank";
+    public static final String TIMEZONE = "timezone";
 
+    @SerializedName("lang")
     private String lang;
+    @SerializedName("xmlns")
     private String xmlns;
+    @SerializedName("yahoo")
     private String yahoo;
+    @SerializedName("uri")
     private String uri;
+    @SerializedName("woeid")
     private String woeid;
+    @SerializedName("placeTypeName")
     private PlaceTypeName placeTypeName;
+    @SerializedName("name")
     private String name;
+    @SerializedName("country")
     private Country country;
+    @SerializedName("admin1")
     private Admin1 admin1;
+    @SerializedName("admin2")
     private Admin2 admin2;
-    private Object admin3;
+    @SerializedName("locality1")
     private Locality1 locality1;
-    private Object locality2;
+    @SerializedName("postal")
     private Postal postal;
+    @SerializedName("centroid")
     private Centroid centroid;
+    @SerializedName("boundingBox")
     private BoundingBox boundingBox;
+    @SerializedName("areaRank")
     private String areaRank;
+    @SerializedName("popRank")
     private String popRank;
+    @SerializedName("timezone")
     private Timezone timezone;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Place() {
-    }
+    public Place(){ }
 
-    /**
-     * 
-     * @param locality2
-     * @param locality1
-     * @param postal
-     * @param woeid
-     * @param placeTypeName
-     * @param xmlns
-     * @param lang
-     * @param uri
-     * @param centroid
-     * @param country
-     * @param timezone
-     * @param boundingBox
-     * @param admin3
-     * @param admin2
-     * @param admin1
-     * @param name
-     * @param popRank
-     * @param areaRank
-     * @param yahoo
-     */
-    public Place(String lang, String xmlns, String yahoo, String uri, String woeid, PlaceTypeName placeTypeName, String name, Country country, Admin1 admin1, Admin2 admin2, Object admin3, Locality1 locality1, Object locality2, Postal postal, Centroid centroid, BoundingBox boundingBox, String areaRank, String popRank, Timezone timezone) {
-        super();
+    public Place setLang(String lang){
         this.lang = lang;
+        return this;
+    }
+    public String getLang(){
+        return this.lang;
+    }
+    public Place setXmlns(String xmlns){
         this.xmlns = xmlns;
+        return this;
+    }
+    public String getXmlns(){
+        return this.xmlns;
+    }
+    public Place setYahoo(String yahoo){
         this.yahoo = yahoo;
+        return this;
+    }
+    public String getYahoo(){
+        return this.yahoo;
+    }
+    public Place setUri(String uri){
         this.uri = uri;
+        return this;
+    }
+    public String getUri(){
+        return this.uri;
+    }
+    public Place setWoeid(String woeid){
         this.woeid = woeid;
+        return this;
+    }
+    public String getWoeid(){
+        return this.woeid;
+    }
+    public Place setPlaceTypeName(PlaceTypeName placeTypeName){
         this.placeTypeName = placeTypeName;
+        return this;
+    }
+    public PlaceTypeName getPlaceTypeName(){
+        return this.placeTypeName;
+    }
+    public Place setName(String name){
         this.name = name;
+        return this;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public Place setCountry(Country country){
         this.country = country;
+        return this;
+    }
+    public Country getCountry(){
+        return this.country;
+    }
+    public Place setAdmin1(Admin1 admin1){
         this.admin1 = admin1;
+        return this;
+    }
+    public Admin1 getAdmin1(){
+        return this.admin1;
+    }
+    public Place setAdmin2(Admin2 admin2){
         this.admin2 = admin2;
-        this.admin3 = admin3;
+        return this;
+    }
+    public Admin2 getAdmin2(){
+        return this.admin2;
+    }
+    public Place setLocality1(Locality1 locality1){
         this.locality1 = locality1;
-        this.locality2 = locality2;
+        return this;
+    }
+    public Locality1 getLocality1(){
+        return this.locality1;
+    }
+    public Place setPostal(Postal postal){
         this.postal = postal;
+        return this;
+    }
+    public Postal getPostal(){
+        return this.postal;
+    }
+    public Place setCentroid(Centroid centroid){
         this.centroid = centroid;
+        return this;
+    }
+    public Centroid getCentroid(){
+        return this.centroid;
+    }
+    public Place setBoundingBox(BoundingBox boundingBox){
         this.boundingBox = boundingBox;
+        return this;
+    }
+    public BoundingBox getBoundingBox(){
+        return this.boundingBox;
+    }
+    public Place setAreaRank(String areaRank){
         this.areaRank = areaRank;
+        return this;
+    }
+    public String getAreaRank(){
+        return this.areaRank;
+    }
+    public Place setPopRank(String popRank){
         this.popRank = popRank;
+        return this;
+    }
+    public String getPopRank(){
+        return this.popRank;
+    }
+    public Place setTimezone(Timezone timezone){
         this.timezone = timezone;
+        return this;
     }
-
-    public String getLang() {
-        return lang;
+    public Timezone getTimezone(){
+        return this.timezone;
     }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public String getXmlns() {
-        return xmlns;
-    }
-
-    public void setXmlns(String xmlns) {
-        this.xmlns = xmlns;
-    }
-
-    public String getYahoo() {
-        return yahoo;
-    }
-
-    public void setYahoo(String yahoo) {
-        this.yahoo = yahoo;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public String getWoeid() {
-        return woeid;
-    }
-
-    public void setWoeid(String woeid) {
-        this.woeid = woeid;
-    }
-
-    public PlaceTypeName getPlaceTypeName() {
-        return placeTypeName;
-    }
-
-    public void setPlaceTypeName(PlaceTypeName placeTypeName) {
-        this.placeTypeName = placeTypeName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public Admin1 getAdmin1() {
-        return admin1;
-    }
-
-    public void setAdmin1(Admin1 admin1) {
-        this.admin1 = admin1;
-    }
-
-    public Admin2 getAdmin2() {
-        return admin2;
-    }
-
-    public void setAdmin2(Admin2 admin2) {
-        this.admin2 = admin2;
-    }
-
-    public Object getAdmin3() {
-        return admin3;
-    }
-
-    public void setAdmin3(Object admin3) {
-        this.admin3 = admin3;
-    }
-
-    public Locality1 getLocality1() {
-        return locality1;
-    }
-
-    public void setLocality1(Locality1 locality1) {
-        this.locality1 = locality1;
-    }
-
-    public Object getLocality2() {
-        return locality2;
-    }
-
-    public void setLocality2(Object locality2) {
-        this.locality2 = locality2;
-    }
-
-    public Postal getPostal() {
-        return postal;
-    }
-
-    public void setPostal(Postal postal) {
-        this.postal = postal;
-    }
-
-    public Centroid getCentroid() {
-        return centroid;
-    }
-
-    public void setCentroid(Centroid centroid) {
-        this.centroid = centroid;
-    }
-
-    public BoundingBox getBoundingBox() {
-        return boundingBox;
-    }
-
-    public void setBoundingBox(BoundingBox boundingBox) {
-        this.boundingBox = boundingBox;
-    }
-
-    public String getAreaRank() {
-        return areaRank;
-    }
-
-    public void setAreaRank(String areaRank) {
-        this.areaRank = areaRank;
-    }
-
-    public String getPopRank() {
-        return popRank;
-    }
-
-    public void setPopRank(String popRank) {
-        this.popRank = popRank;
-    }
-
-    public Timezone getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(Timezone timezone) {
-        this.timezone = timezone;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("lang", lang).append("xmlns", xmlns).append("yahoo", yahoo).append("uri", uri).append("woeid", woeid).append("placeTypeName", placeTypeName).append("name", name).append("country", country).append("admin1", admin1).append("admin2", admin2).append("admin3", admin3).append("locality1", locality1).append("locality2", locality2).append("postal", postal).append("centroid", centroid).append("boundingBox", boundingBox).append("areaRank", areaRank).append("popRank", popRank).append("timezone", timezone).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(locality2).append(locality1).append(postal).append(woeid).append(placeTypeName).append(xmlns).append(uri).append(lang).append(centroid).append(country).append(timezone).append(boundingBox).append(admin3).append(admin2).append(admin1).append(name).append(popRank).append(areaRank).append(yahoo).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Place) == false) {
-            return false;
-        }
-        Place rhs = ((Place) other);
-        return new EqualsBuilder().append(locality2, rhs.locality2).append(locality1, rhs.locality1).append(postal, rhs.postal).append(woeid, rhs.woeid).append(placeTypeName, rhs.placeTypeName).append(xmlns, rhs.xmlns).append(uri, rhs.uri).append(lang, rhs.lang).append(centroid, rhs.centroid).append(country, rhs.country).append(timezone, rhs.timezone).append(boundingBox, rhs.boundingBox).append(admin3, rhs.admin3).append(admin2, rhs.admin2).append(admin1, rhs.admin1).append(name, rhs.name).append(popRank, rhs.popRank).append(areaRank, rhs.areaRank).append(yahoo, rhs.yahoo).isEquals();
-    }
-
 }
+
