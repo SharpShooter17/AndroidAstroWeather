@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 public class WeatherController implements UpdateI {
     private String city = new String("New York,USA");
-    private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, "Warsaw,pl");
+    private YahooWeatherService yahooWeatherService = new YahooWeatherService(UNITS.Celsius, this.city);
 
     @Override
     public void update() {

@@ -67,7 +67,7 @@ public class SettingsSingleton {
     }
 
     public void update(){
-        Woeid woeid = getWeatherController().getYahooWeatherService().getWoeid();
+        Woeid woeid = getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid();
 
         if (woeid == null){
             return;
@@ -75,7 +75,7 @@ public class SettingsSingleton {
 
         this.astroCalculator.setDateTime(AstroUtils.getCurrentAstroDateTime());
         this.astroCalculator.setLocation(new AstroCalculator.Location(Double.parseDouble(woeid.getQuery().getResults().getPlace().getCentroid().getLatitude()),
-                Double.parseDouble(getWeatherController().getYahooWeatherService().getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude())));
+                Double.parseDouble(getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude())));
     }
 
     static public SettingsSingleton getInstance(){

@@ -1,24 +1,35 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Locality1 implements Serializable
-{
+public class Locality1 {
 
-    @SerializedName("type")
-    @Expose
     private String type;
-    @SerializedName("woeid")
-    @Expose
     private String woeid;
-    @SerializedName("content")
-    @Expose
     private String content;
-    private final static long serialVersionUID = 2356807990080121562L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Locality1() {
+    }
+
+    /**
+     * 
+     * @param content
+     * @param woeid
+     * @param type
+     */
+    public Locality1(String type, String woeid, String content) {
+        super();
+        this.type = type;
+        this.woeid = woeid;
+        this.content = content;
+    }
 
     public String getType() {
         return type;
@@ -47,6 +58,23 @@ public class Locality1 implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("type", type).append("woeid", woeid).append("content", content).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(content).append(woeid).append(type).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Locality1) == false) {
+            return false;
+        }
+        Locality1 rhs = ((Locality1) other);
+        return new EqualsBuilder().append(content, rhs.content).append(woeid, rhs.woeid).append(type, rhs.type).isEquals();
     }
 
 }

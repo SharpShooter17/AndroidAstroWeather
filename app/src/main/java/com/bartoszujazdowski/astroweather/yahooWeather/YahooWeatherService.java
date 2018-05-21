@@ -3,6 +3,7 @@ package com.bartoszujazdowski.astroweather.yahooWeather;
 import android.os.AsyncTask;
 
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
 
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
@@ -22,15 +23,13 @@ public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
 
     private static final String base_URL= "https://query.yahooapis.com/v1/public/yql?format=json&q=";
 
+    @Getter
+    private YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = new YahooWeatherDataAndWoeid();
+
     private String woeidUrl;
     private String weatherUrl;
 
     private UNITS units;
-
-    @Getter
-    private YahooWeatherData yahooWeatherData;
-    @Getter
-    private Woeid woeid;
 
     private YahooWeatherService(UNITS units){
         this.units = units;
@@ -88,12 +87,13 @@ public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
             URL url = new URL( this.weatherUrl );
             URLConnection urlConnection = url.openConnection();
             BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
-            this.yahooWeatherData = new Gson().fromJson(bufferedReader, YahooWeatherData.class);
+            this.yahooWeatherDataAndWoeid.setYahooWeatherData(new Gson().fromJson(bufferedReader, YahooWeatherData.class));
 
             url = new URL( this.woeidUrl );
             urlConnection = url.openConnection();
             bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
-            this.woeid = new Gson().fromJson(bufferedReader, Woeid.class);
+            this.yahooWeatherDataAndWoeid.setWoeid(new Gson().fromJson(bufferedReader, Woeid.class));
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

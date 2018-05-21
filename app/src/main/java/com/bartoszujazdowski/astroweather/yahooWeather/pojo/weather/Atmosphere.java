@@ -1,27 +1,16 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Atmosphere implements Serializable
-{
+public class Atmosphere {
 
-    @SerializedName("humidity")
-    @Expose
     private String humidity;
-    @SerializedName("pressure")
-    @Expose
     private String pressure;
-    @SerializedName("rising")
-    @Expose
     private String rising;
-    @SerializedName("visibility")
-    @Expose
     private String visibility;
-    private final static long serialVersionUID = -5573105819574844398L;
 
     /**
      * No args constructor for use in serialization
@@ -53,22 +42,12 @@ public class Atmosphere implements Serializable
         this.humidity = humidity;
     }
 
-    public Atmosphere withHumidity(String humidity) {
-        this.humidity = humidity;
-        return this;
-    }
-
     public String getPressure() {
         return pressure;
     }
 
     public void setPressure(String pressure) {
         this.pressure = pressure;
-    }
-
-    public Atmosphere withPressure(String pressure) {
-        this.pressure = pressure;
-        return this;
     }
 
     public String getRising() {
@@ -79,11 +58,6 @@ public class Atmosphere implements Serializable
         this.rising = rising;
     }
 
-    public Atmosphere withRising(String rising) {
-        this.rising = rising;
-        return this;
-    }
-
     public String getVisibility() {
         return visibility;
     }
@@ -92,14 +66,26 @@ public class Atmosphere implements Serializable
         this.visibility = visibility;
     }
 
-    public Atmosphere withVisibility(String visibility) {
-        this.visibility = visibility;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("humidity", humidity).append("pressure", pressure).append("rising", rising).append("visibility", visibility).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(rising).append(humidity).append(pressure).append(visibility).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Atmosphere) == false) {
+            return false;
+        }
+        Atmosphere rhs = ((Atmosphere) other);
+        return new EqualsBuilder().append(rising, rhs.rising).append(humidity, rhs.humidity).append(pressure, rhs.pressure).append(visibility, rhs.visibility).isEquals();
     }
 
 }

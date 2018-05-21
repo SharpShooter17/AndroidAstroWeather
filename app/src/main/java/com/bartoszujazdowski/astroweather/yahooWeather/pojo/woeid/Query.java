@@ -1,27 +1,38 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Query implements Serializable
-{
+public class Query {
 
-    @SerializedName("count")
-    @Expose
     private Integer count;
-    @SerializedName("created")
-    @Expose
     private String created;
-    @SerializedName("lang")
-    @Expose
     private String lang;
-    @SerializedName("results")
-    @Expose
     private Results results;
-    private final static long serialVersionUID = 7653840121602876186L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Query() {
+    }
+
+    /**
+     * 
+     * @param results
+     * @param count
+     * @param created
+     * @param lang
+     */
+    public Query(Integer count, String created, String lang, Results results) {
+        super();
+        this.count = count;
+        this.created = created;
+        this.lang = lang;
+        this.results = results;
+    }
 
     public Integer getCount() {
         return count;
@@ -58,6 +69,23 @@ public class Query implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("count", count).append("created", created).append("lang", lang).append("results", results).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(results).append(count).append(created).append(lang).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Query) == false) {
+            return false;
+        }
+        Query rhs = ((Query) other);
+        return new EqualsBuilder().append(results, rhs.results).append(count, rhs.count).append(created, rhs.created).append(lang, rhs.lang).isEquals();
     }
 
 }

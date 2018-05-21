@@ -1,18 +1,13 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class YahooWeatherData implements Serializable
-{
+public class YahooWeatherData {
 
-    @SerializedName("query")
-    @Expose
     private Query query;
-    private final static long serialVersionUID = -8016834864484607454L;
 
     /**
      * No args constructor for use in serialization
@@ -38,14 +33,26 @@ public class YahooWeatherData implements Serializable
         this.query = query;
     }
 
-    public YahooWeatherData withQuery(Query query) {
-        this.query = query;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("query", query).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(query).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof YahooWeatherData) == false) {
+            return false;
+        }
+        YahooWeatherData rhs = ((YahooWeatherData) other);
+        return new EqualsBuilder().append(query, rhs.query).isEquals();
     }
 
 }

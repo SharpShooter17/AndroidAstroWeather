@@ -37,7 +37,7 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
     @Override
     public void update() {
         try {
-            List<Forecast> forecastList = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherData().getQuery().getResults().getChannel().getItem().getForecast();
+            List<Forecast> forecastList = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData().getQuery().getResults().getChannel().getItem().getForecast();
 
             this.forecastLL.removeAllViews();
 

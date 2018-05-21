@@ -1,44 +1,22 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Item implements Serializable
-{
+public class Item {
 
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("lat")
-    @Expose
     private String lat;
-    @SerializedName("long")
-    @Expose
     private String _long;
-    @SerializedName("link")
-    @Expose
     private String link;
-    @SerializedName("pubDate")
-    @Expose
     private String pubDate;
-    @SerializedName("condition")
-    @Expose
     private Condition condition;
-    @SerializedName("forecast")
-    @Expose
-    private List<Forecast> forecast = new ArrayList<Forecast>();
-    @SerializedName("description")
-    @Expose
+    private List<Forecast> forecast = null;
     private String description;
-    @SerializedName("guid")
-    @Expose
     private Guid guid;
-    private final static long serialVersionUID = -1236160832392931181L;
 
     /**
      * No args constructor for use in serialization
@@ -80,22 +58,12 @@ public class Item implements Serializable
         this.title = title;
     }
 
-    public Item withTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
     public String getLat() {
         return lat;
     }
 
     public void setLat(String lat) {
         this.lat = lat;
-    }
-
-    public Item withLat(String lat) {
-        this.lat = lat;
-        return this;
     }
 
     public String getLong() {
@@ -106,22 +74,12 @@ public class Item implements Serializable
         this._long = _long;
     }
 
-    public Item withLong(String _long) {
-        this._long = _long;
-        return this;
-    }
-
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public Item withLink(String link) {
-        this.link = link;
-        return this;
     }
 
     public String getPubDate() {
@@ -132,22 +90,12 @@ public class Item implements Serializable
         this.pubDate = pubDate;
     }
 
-    public Item withPubDate(String pubDate) {
-        this.pubDate = pubDate;
-        return this;
-    }
-
     public Condition getCondition() {
         return condition;
     }
 
     public void setCondition(Condition condition) {
         this.condition = condition;
-    }
-
-    public Item withCondition(Condition condition) {
-        this.condition = condition;
-        return this;
     }
 
     public List<Forecast> getForecast() {
@@ -158,22 +106,12 @@ public class Item implements Serializable
         this.forecast = forecast;
     }
 
-    public Item withForecast(List<Forecast> forecast) {
-        this.forecast = forecast;
-        return this;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Item withDescription(String description) {
-        this.description = description;
-        return this;
     }
 
     public Guid getGuid() {
@@ -184,14 +122,26 @@ public class Item implements Serializable
         this.guid = guid;
     }
 
-    public Item withGuid(Guid guid) {
-        this.guid = guid;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("title", title).append("lat", lat).append("_long", _long).append("link", link).append("pubDate", pubDate).append("condition", condition).append("forecast", forecast).append("description", description).append("guid", guid).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(guid).append(pubDate).append(title).append(_long).append(forecast).append(condition).append(description).append(link).append(lat).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Item) == false) {
+            return false;
+        }
+        Item rhs = ((Item) other);
+        return new EqualsBuilder().append(guid, rhs.guid).append(pubDate, rhs.pubDate).append(title, rhs.title).append(_long, rhs._long).append(forecast, rhs.forecast).append(condition, rhs.condition).append(description, rhs.description).append(link, rhs.link).append(lat, rhs.lat).isEquals();
     }
 
 }

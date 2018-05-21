@@ -1,18 +1,29 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Woeid implements Serializable
-{
+public class Woeid {
 
-    @SerializedName("query")
-    @Expose
     private Query query;
-    private final static long serialVersionUID = 663476699955794874L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Woeid() {
+    }
+
+    /**
+     * 
+     * @param query
+     */
+    public Woeid(Query query) {
+        super();
+        this.query = query;
+    }
 
     public Query getQuery() {
         return query;
@@ -25,6 +36,23 @@ public class Woeid implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("query", query).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(query).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Woeid) == false) {
+            return false;
+        }
+        Woeid rhs = ((Woeid) other);
+        return new EqualsBuilder().append(query, rhs.query).isEquals();
     }
 
 }

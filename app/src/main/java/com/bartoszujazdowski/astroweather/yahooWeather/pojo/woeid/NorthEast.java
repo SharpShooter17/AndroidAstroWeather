@@ -1,21 +1,32 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class NorthEast implements Serializable
-{
+public class NorthEast {
 
-    @SerializedName("latitude")
-    @Expose
     private String latitude;
-    @SerializedName("longitude")
-    @Expose
     private String longitude;
-    private final static long serialVersionUID = -229204221063886279L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public NorthEast() {
+    }
+
+    /**
+     * 
+     * @param longitude
+     * @param latitude
+     */
+    public NorthEast(String latitude, String longitude) {
+        super();
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public String getLatitude() {
         return latitude;
@@ -36,6 +47,23 @@ public class NorthEast implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("latitude", latitude).append("longitude", longitude).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(longitude).append(latitude).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof NorthEast) == false) {
+            return false;
+        }
+        NorthEast rhs = ((NorthEast) other);
+        return new EqualsBuilder().append(longitude, rhs.longitude).append(latitude, rhs.latitude).isEquals();
     }
 
 }

@@ -1,27 +1,16 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Units implements Serializable
-{
+public class Units {
 
-    @SerializedName("distance")
-    @Expose
     private String distance;
-    @SerializedName("pressure")
-    @Expose
     private String pressure;
-    @SerializedName("speed")
-    @Expose
     private String speed;
-    @SerializedName("temperature")
-    @Expose
     private String temperature;
-    private final static long serialVersionUID = 8865232948330997767L;
 
     /**
      * No args constructor for use in serialization
@@ -53,22 +42,12 @@ public class Units implements Serializable
         this.distance = distance;
     }
 
-    public Units withDistance(String distance) {
-        this.distance = distance;
-        return this;
-    }
-
     public String getPressure() {
         return pressure;
     }
 
     public void setPressure(String pressure) {
         this.pressure = pressure;
-    }
-
-    public Units withPressure(String pressure) {
-        this.pressure = pressure;
-        return this;
     }
 
     public String getSpeed() {
@@ -79,11 +58,6 @@ public class Units implements Serializable
         this.speed = speed;
     }
 
-    public Units withSpeed(String speed) {
-        this.speed = speed;
-        return this;
-    }
-
     public String getTemperature() {
         return temperature;
     }
@@ -92,14 +66,26 @@ public class Units implements Serializable
         this.temperature = temperature;
     }
 
-    public Units withTemperature(String temperature) {
-        this.temperature = temperature;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("distance", distance).append("pressure", pressure).append("speed", speed).append("temperature", temperature).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(distance).append(pressure).append(speed).append(temperature).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Units) == false) {
+            return false;
+        }
+        Units rhs = ((Units) other);
+        return new EqualsBuilder().append(distance, rhs.distance).append(pressure, rhs.pressure).append(speed, rhs.speed).append(temperature, rhs.temperature).isEquals();
     }
 
 }

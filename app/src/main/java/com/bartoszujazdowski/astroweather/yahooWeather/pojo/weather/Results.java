@@ -1,18 +1,13 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Results implements Serializable
-{
+public class Results {
 
-    @SerializedName("channel")
-    @Expose
     private Channel channel;
-    private final static long serialVersionUID = 940254204933340267L;
 
     /**
      * No args constructor for use in serialization
@@ -38,14 +33,26 @@ public class Results implements Serializable
         this.channel = channel;
     }
 
-    public Results withChannel(Channel channel) {
-        this.channel = channel;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("channel", channel).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(channel).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Results) == false) {
+            return false;
+        }
+        Results rhs = ((Results) other);
+        return new EqualsBuilder().append(channel, rhs.channel).isEquals();
     }
 
 }

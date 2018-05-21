@@ -1,33 +1,18 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Forecast implements Serializable
-{
+public class Forecast {
 
-    @SerializedName("code")
-    @Expose
     private String code;
-    @SerializedName("date")
-    @Expose
     private String date;
-    @SerializedName("day")
-    @Expose
     private String day;
-    @SerializedName("high")
-    @Expose
     private String high;
-    @SerializedName("low")
-    @Expose
     private String low;
-    @SerializedName("text")
-    @Expose
     private String text;
-    private final static long serialVersionUID = -2242161517709235269L;
 
     /**
      * No args constructor for use in serialization
@@ -63,22 +48,12 @@ public class Forecast implements Serializable
         this.code = code;
     }
 
-    public Forecast withCode(String code) {
-        this.code = code;
-        return this;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Forecast withDate(String date) {
-        this.date = date;
-        return this;
     }
 
     public String getDay() {
@@ -89,22 +64,12 @@ public class Forecast implements Serializable
         this.day = day;
     }
 
-    public Forecast withDay(String day) {
-        this.day = day;
-        return this;
-    }
-
     public String getHigh() {
         return high;
     }
 
     public void setHigh(String high) {
         this.high = high;
-    }
-
-    public Forecast withHigh(String high) {
-        this.high = high;
-        return this;
     }
 
     public String getLow() {
@@ -115,11 +80,6 @@ public class Forecast implements Serializable
         this.low = low;
     }
 
-    public Forecast withLow(String low) {
-        this.low = low;
-        return this;
-    }
-
     public String getText() {
         return text;
     }
@@ -128,14 +88,26 @@ public class Forecast implements Serializable
         this.text = text;
     }
 
-    public Forecast withText(String text) {
-        this.text = text;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("code", code).append("date", date).append("day", day).append("high", high).append("low", low).append("text", text).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(text).append(high).append(day).append(code).append(low).append(date).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Forecast) == false) {
+            return false;
+        }
+        Forecast rhs = ((Forecast) other);
+        return new EqualsBuilder().append(text, rhs.text).append(high, rhs.high).append(day, rhs.day).append(code, rhs.code).append(low, rhs.low).append(date, rhs.date).isEquals();
     }
 
 }

@@ -1,27 +1,16 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Condition implements Serializable
-{
+public class Condition {
 
-    @SerializedName("code")
-    @Expose
     private String code;
-    @SerializedName("date")
-    @Expose
     private String date;
-    @SerializedName("temp")
-    @Expose
     private String temp;
-    @SerializedName("text")
-    @Expose
     private String text;
-    private final static long serialVersionUID = -7610802773068101606L;
 
     /**
      * No args constructor for use in serialization
@@ -53,22 +42,12 @@ public class Condition implements Serializable
         this.code = code;
     }
 
-    public Condition withCode(String code) {
-        this.code = code;
-        return this;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Condition withDate(String date) {
-        this.date = date;
-        return this;
     }
 
     public String getTemp() {
@@ -79,11 +58,6 @@ public class Condition implements Serializable
         this.temp = temp;
     }
 
-    public Condition withTemp(String temp) {
-        this.temp = temp;
-        return this;
-    }
-
     public String getText() {
         return text;
     }
@@ -92,14 +66,26 @@ public class Condition implements Serializable
         this.text = text;
     }
 
-    public Condition withText(String text) {
-        this.text = text;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("code", code).append("date", date).append("temp", temp).append("text", text).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(text).append(temp).append(code).append(date).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Condition) == false) {
+            return false;
+        }
+        Condition rhs = ((Condition) other);
+        return new EqualsBuilder().append(text, rhs.text).append(temp, rhs.temp).append(code, rhs.code).append(date, rhs.date).isEquals();
     }
 
 }

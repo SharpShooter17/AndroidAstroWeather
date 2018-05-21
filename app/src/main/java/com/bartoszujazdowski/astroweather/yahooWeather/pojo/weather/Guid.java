@@ -1,18 +1,13 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Guid implements Serializable
-{
+public class Guid {
 
-    @SerializedName("isPermaLink")
-    @Expose
     private String isPermaLink;
-    private final static long serialVersionUID = 647066481444028700L;
 
     /**
      * No args constructor for use in serialization
@@ -38,14 +33,26 @@ public class Guid implements Serializable
         this.isPermaLink = isPermaLink;
     }
 
-    public Guid withIsPermaLink(String isPermaLink) {
-        this.isPermaLink = isPermaLink;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("isPermaLink", isPermaLink).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(isPermaLink).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Guid) == false) {
+            return false;
+        }
+        Guid rhs = ((Guid) other);
+        return new EqualsBuilder().append(isPermaLink, rhs.isPermaLink).isEquals();
     }
 
 }

@@ -1,21 +1,14 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Astronomy implements Serializable
-{
+public class Astronomy {
 
-    @SerializedName("sunrise")
-    @Expose
     private String sunrise;
-    @SerializedName("sunset")
-    @Expose
     private String sunset;
-    private final static long serialVersionUID = 1183162884409807436L;
 
     /**
      * No args constructor for use in serialization
@@ -43,11 +36,6 @@ public class Astronomy implements Serializable
         this.sunrise = sunrise;
     }
 
-    public Astronomy withSunrise(String sunrise) {
-        this.sunrise = sunrise;
-        return this;
-    }
-
     public String getSunset() {
         return sunset;
     }
@@ -56,14 +44,26 @@ public class Astronomy implements Serializable
         this.sunset = sunset;
     }
 
-    public Astronomy withSunset(String sunset) {
-        this.sunset = sunset;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("sunrise", sunrise).append("sunset", sunset).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(sunset).append(sunrise).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Astronomy) == false) {
+            return false;
+        }
+        Astronomy rhs = ((Astronomy) other);
+        return new EqualsBuilder().append(sunset, rhs.sunset).append(sunrise, rhs.sunrise).isEquals();
     }
 
 }

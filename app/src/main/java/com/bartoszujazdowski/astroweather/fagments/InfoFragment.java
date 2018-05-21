@@ -88,8 +88,8 @@ public class InfoFragment extends Fragment {
         try {
             YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
 
-            this.latitudeInfoText.setText( yahooWeatherService.getWoeid().getQuery().getResults().getPlace().getCentroid().getLatitude() );
-            this.longitudeInfoText.setText( yahooWeatherService.getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude() );
+            this.latitudeInfoText.setText( yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid().getQuery().getResults().getPlace().getCentroid().getLatitude() );
+            this.longitudeInfoText.setText( yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid().getQuery().getResults().getPlace().getCentroid().getLongitude() );
             this.timeInfoText.setText(new Date().toString());
         }catch (NullPointerException e){
             e.printStackTrace();

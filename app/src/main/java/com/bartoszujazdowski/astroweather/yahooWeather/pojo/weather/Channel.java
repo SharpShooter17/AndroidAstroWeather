@@ -1,54 +1,25 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Channel implements Serializable
-{
+public class Channel {
 
-    @SerializedName("units")
-    @Expose
     private Units units;
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("link")
-    @Expose
     private String link;
-    @SerializedName("description")
-    @Expose
     private String description;
-    @SerializedName("language")
-    @Expose
     private String language;
-    @SerializedName("lastBuildDate")
-    @Expose
     private String lastBuildDate;
-    @SerializedName("ttl")
-    @Expose
     private String ttl;
-    @SerializedName("location")
-    @Expose
     private Location location;
-    @SerializedName("wind")
-    @Expose
     private Wind wind;
-    @SerializedName("atmosphere")
-    @Expose
     private Atmosphere atmosphere;
-    @SerializedName("astronomy")
-    @Expose
     private Astronomy astronomy;
-    @SerializedName("image")
-    @Expose
     private Image image;
-    @SerializedName("item")
-    @Expose
     private Item item;
-    private final static long serialVersionUID = -8206746943361881516L;
 
     /**
      * No args constructor for use in serialization
@@ -98,22 +69,12 @@ public class Channel implements Serializable
         this.units = units;
     }
 
-    public Channel withUnits(Units units) {
-        this.units = units;
-        return this;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Channel withTitle(String title) {
-        this.title = title;
-        return this;
     }
 
     public String getLink() {
@@ -124,22 +85,12 @@ public class Channel implements Serializable
         this.link = link;
     }
 
-    public Channel withLink(String link) {
-        this.link = link;
-        return this;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Channel withDescription(String description) {
-        this.description = description;
-        return this;
     }
 
     public String getLanguage() {
@@ -150,22 +101,12 @@ public class Channel implements Serializable
         this.language = language;
     }
 
-    public Channel withLanguage(String language) {
-        this.language = language;
-        return this;
-    }
-
     public String getLastBuildDate() {
         return lastBuildDate;
     }
 
     public void setLastBuildDate(String lastBuildDate) {
         this.lastBuildDate = lastBuildDate;
-    }
-
-    public Channel withLastBuildDate(String lastBuildDate) {
-        this.lastBuildDate = lastBuildDate;
-        return this;
     }
 
     public String getTtl() {
@@ -176,22 +117,12 @@ public class Channel implements Serializable
         this.ttl = ttl;
     }
 
-    public Channel withTtl(String ttl) {
-        this.ttl = ttl;
-        return this;
-    }
-
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
-    }
-
-    public Channel withLocation(Location location) {
-        this.location = location;
-        return this;
     }
 
     public Wind getWind() {
@@ -202,22 +133,12 @@ public class Channel implements Serializable
         this.wind = wind;
     }
 
-    public Channel withWind(Wind wind) {
-        this.wind = wind;
-        return this;
-    }
-
     public Atmosphere getAtmosphere() {
         return atmosphere;
     }
 
     public void setAtmosphere(Atmosphere atmosphere) {
         this.atmosphere = atmosphere;
-    }
-
-    public Channel withAtmosphere(Atmosphere atmosphere) {
-        this.atmosphere = atmosphere;
-        return this;
     }
 
     public Astronomy getAstronomy() {
@@ -228,22 +149,12 @@ public class Channel implements Serializable
         this.astronomy = astronomy;
     }
 
-    public Channel withAstronomy(Astronomy astronomy) {
-        this.astronomy = astronomy;
-        return this;
-    }
-
     public Image getImage() {
         return image;
     }
 
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    public Channel withImage(Image image) {
-        this.image = image;
-        return this;
     }
 
     public Item getItem() {
@@ -254,14 +165,26 @@ public class Channel implements Serializable
         this.item = item;
     }
 
-    public Channel withItem(Item item) {
-        this.item = item;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("units", units).append("title", title).append("link", link).append("description", description).append("language", language).append("lastBuildDate", lastBuildDate).append("ttl", ttl).append("location", location).append("wind", wind).append("atmosphere", atmosphere).append("astronomy", astronomy).append("image", image).append("item", item).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(wind).append(location).append(link).append(image).append(atmosphere).append(ttl).append(astronomy).append(units).append(title).append(description).append(item).append(lastBuildDate).append(language).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Channel) == false) {
+            return false;
+        }
+        Channel rhs = ((Channel) other);
+        return new EqualsBuilder().append(wind, rhs.wind).append(location, rhs.location).append(link, rhs.link).append(image, rhs.image).append(atmosphere, rhs.atmosphere).append(ttl, rhs.ttl).append(astronomy, rhs.astronomy).append(units, rhs.units).append(title, rhs.title).append(description, rhs.description).append(item, rhs.item).append(lastBuildDate, rhs.lastBuildDate).append(language, rhs.language).isEquals();
     }
 
 }

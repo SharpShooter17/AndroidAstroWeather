@@ -1,21 +1,32 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PlaceTypeName implements Serializable
-{
+public class PlaceTypeName {
 
-    @SerializedName("code")
-    @Expose
     private String code;
-    @SerializedName("content")
-    @Expose
     private String content;
-    private final static long serialVersionUID = -5627359245265242827L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public PlaceTypeName() {
+    }
+
+    /**
+     * 
+     * @param content
+     * @param code
+     */
+    public PlaceTypeName(String code, String content) {
+        super();
+        this.code = code;
+        this.content = content;
+    }
 
     public String getCode() {
         return code;
@@ -36,6 +47,23 @@ public class PlaceTypeName implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("code", code).append("content", content).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(content).append(code).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof PlaceTypeName) == false) {
+            return false;
+        }
+        PlaceTypeName rhs = ((PlaceTypeName) other);
+        return new EqualsBuilder().append(content, rhs.content).append(code, rhs.code).isEquals();
     }
 
 }

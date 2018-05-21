@@ -1,24 +1,15 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Wind implements Serializable
-{
+public class Wind {
 
-    @SerializedName("chill")
-    @Expose
     private String chill;
-    @SerializedName("direction")
-    @Expose
     private String direction;
-    @SerializedName("speed")
-    @Expose
     private String speed;
-    private final static long serialVersionUID = 1558783989287028062L;
 
     /**
      * No args constructor for use in serialization
@@ -48,22 +39,12 @@ public class Wind implements Serializable
         this.chill = chill;
     }
 
-    public Wind withChill(String chill) {
-        this.chill = chill;
-        return this;
-    }
-
     public String getDirection() {
         return direction;
     }
 
     public void setDirection(String direction) {
         this.direction = direction;
-    }
-
-    public Wind withDirection(String direction) {
-        this.direction = direction;
-        return this;
     }
 
     public String getSpeed() {
@@ -74,14 +55,26 @@ public class Wind implements Serializable
         this.speed = speed;
     }
 
-    public Wind withSpeed(String speed) {
-        this.speed = speed;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("chill", chill).append("direction", direction).append("speed", speed).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(speed).append(direction).append(chill).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Wind) == false) {
+            return false;
+        }
+        Wind rhs = ((Wind) other);
+        return new EqualsBuilder().append(speed, rhs.speed).append(direction, rhs.direction).append(chill, rhs.chill).isEquals();
     }
 
 }

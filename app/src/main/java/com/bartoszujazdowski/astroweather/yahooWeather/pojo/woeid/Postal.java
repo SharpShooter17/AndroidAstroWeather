@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Timezone {
+public class Postal {
 
     private String type;
     private String woeid;
@@ -15,7 +15,7 @@ public class Timezone {
      * No args constructor for use in serialization
      * 
      */
-    public Timezone() {
+    public Postal() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class Timezone {
      * @param woeid
      * @param type
      */
-    public Timezone(String type, String woeid, String content) {
+    public Postal(String type, String woeid, String content) {
         super();
         this.type = type;
         this.woeid = woeid;
@@ -70,10 +70,10 @@ public class Timezone {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Timezone) == false) {
+        if ((other instanceof Postal) == false) {
             return false;
         }
-        Timezone rhs = ((Timezone) other);
+        Postal rhs = ((Postal) other);
         return new EqualsBuilder().append(content, rhs.content).append(woeid, rhs.woeid).append(type, rhs.type).isEquals();
     }
 

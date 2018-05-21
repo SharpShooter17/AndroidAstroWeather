@@ -1,24 +1,15 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Location implements Serializable
-{
+public class Location {
 
-    @SerializedName("city")
-    @Expose
     private String city;
-    @SerializedName("country")
-    @Expose
     private String country;
-    @SerializedName("region")
-    @Expose
     private String region;
-    private final static long serialVersionUID = 4257036540871728260L;
 
     /**
      * No args constructor for use in serialization
@@ -48,22 +39,12 @@ public class Location implements Serializable
         this.city = city;
     }
 
-    public Location withCity(String city) {
-        this.city = city;
-        return this;
-    }
-
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Location withCountry(String country) {
-        this.country = country;
-        return this;
     }
 
     public String getRegion() {
@@ -74,14 +55,26 @@ public class Location implements Serializable
         this.region = region;
     }
 
-    public Location withRegion(String region) {
-        this.region = region;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("city", city).append("country", country).append("region", region).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(region).append(country).append(city).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Location) == false) {
+            return false;
+        }
+        Location rhs = ((Location) other);
+        return new EqualsBuilder().append(region, rhs.region).append(country, rhs.country).append(city, rhs.city).isEquals();
     }
 
 }

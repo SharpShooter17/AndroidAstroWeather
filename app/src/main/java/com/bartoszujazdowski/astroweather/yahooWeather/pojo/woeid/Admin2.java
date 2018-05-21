@@ -1,27 +1,38 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Admin2 implements Serializable
-{
+public class Admin2 {
 
-    @SerializedName("code")
-    @Expose
     private String code;
-    @SerializedName("type")
-    @Expose
     private String type;
-    @SerializedName("woeid")
-    @Expose
     private String woeid;
-    @SerializedName("content")
-    @Expose
     private String content;
-    private final static long serialVersionUID = -8580804911497248577L;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Admin2() {
+    }
+
+    /**
+     * 
+     * @param content
+     * @param woeid
+     * @param code
+     * @param type
+     */
+    public Admin2(String code, String type, String woeid, String content) {
+        super();
+        this.code = code;
+        this.type = type;
+        this.woeid = woeid;
+        this.content = content;
+    }
 
     public String getCode() {
         return code;
@@ -58,6 +69,23 @@ public class Admin2 implements Serializable
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("code", code).append("type", type).append("woeid", woeid).append("content", content).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(content).append(woeid).append(code).append(type).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Admin2) == false) {
+            return false;
+        }
+        Admin2 rhs = ((Admin2) other);
+        return new EqualsBuilder().append(content, rhs.content).append(woeid, rhs.woeid).append(code, rhs.code).append(type, rhs.type).isEquals();
     }
 
 }

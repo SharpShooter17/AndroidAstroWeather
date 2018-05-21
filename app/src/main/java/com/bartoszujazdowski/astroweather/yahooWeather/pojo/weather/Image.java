@@ -1,30 +1,17 @@
 
 package com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather;
 
-import java.io.Serializable;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Image implements Serializable
-{
+public class Image {
 
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("width")
-    @Expose
     private String width;
-    @SerializedName("height")
-    @Expose
     private String height;
-    @SerializedName("link")
-    @Expose
     private String link;
-    @SerializedName("url")
-    @Expose
     private String url;
-    private final static long serialVersionUID = -872487589707042181L;
 
     /**
      * No args constructor for use in serialization
@@ -58,22 +45,12 @@ public class Image implements Serializable
         this.title = title;
     }
 
-    public Image withTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
     public String getWidth() {
         return width;
     }
 
     public void setWidth(String width) {
         this.width = width;
-    }
-
-    public Image withWidth(String width) {
-        this.width = width;
-        return this;
     }
 
     public String getHeight() {
@@ -84,22 +61,12 @@ public class Image implements Serializable
         this.height = height;
     }
 
-    public Image withHeight(String height) {
-        this.height = height;
-        return this;
-    }
-
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public Image withLink(String link) {
-        this.link = link;
-        return this;
     }
 
     public String getUrl() {
@@ -110,14 +77,26 @@ public class Image implements Serializable
         this.url = url;
     }
 
-    public Image withUrl(String url) {
-        this.url = url;
-        return this;
-    }
-
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("title", title).append("width", width).append("height", height).append("link", link).append("url", url).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(title).append(height).append(link).append(width).append(url).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Image) == false) {
+            return false;
+        }
+        Image rhs = ((Image) other);
+        return new EqualsBuilder().append(title, rhs.title).append(height, rhs.height).append(link, rhs.link).append(width, rhs.width).append(url, rhs.url).isEquals();
     }
 
 }

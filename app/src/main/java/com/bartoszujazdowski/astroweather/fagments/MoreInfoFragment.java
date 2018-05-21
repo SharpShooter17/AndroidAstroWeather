@@ -39,7 +39,7 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
 
     @Override
     public void update() {
-        YahooWeatherData yahooWeatherData = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherData();
+        YahooWeatherData yahooWeatherData = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData();
 
         if (yahooWeatherData == null){
             return;
