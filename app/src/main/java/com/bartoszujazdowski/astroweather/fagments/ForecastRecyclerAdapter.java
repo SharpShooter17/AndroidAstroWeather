@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bartoszujazdowski.astroweather.ImageController;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImage;
+import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImageService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Forecast;
 
 import java.util.ArrayList;
@@ -41,13 +42,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter< ForecastRecyc
     public void onBindViewHolder(ViewHolder holder, int position) {
         Forecast forecast = this.forecasts.get(position);
 
-        try {
-            holder.itemImage.setImageBitmap( new YahooWeatherImage().execute( Integer.parseInt(forecast.getCode()) ).get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        holder.itemImage.setImageBitmap(ImageController.getImage(Integer.parseInt(forecast.getCode())));
         holder.itemDate.setText( forecast.getDate() + " - " + forecast.getDay() );
         holder.itemTemp.setText( forecast.getLow() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase() + " - " + forecast.getHigh() + SettingsSingleton.getInstance().getUnits().toString().toUpperCase());
     }

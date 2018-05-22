@@ -9,6 +9,7 @@ import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
 import com.bartoszujazdowski.astroweather.activities.Menu;
+import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImage;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
@@ -59,6 +60,9 @@ public class SettingsSingleton {
                         favouriteLocation.setCountry("en");
                         favouriteLocation.setCity("London");
                         YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.createObject(YahooWeatherDataAndWoeid.class);
+                        YahooWeatherImage yahooWeatherImage = realm.createObject(YahooWeatherImage.class);
+                        yahooWeatherImage.setCode(null);
+                        yahooWeatherImage.setBitmap(null);
                     }
                 }).build();
 

@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bartoszujazdowski.astroweather.ImageController;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImage;
-import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
+import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImageService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
-import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
 
 import java.util.concurrent.ExecutionException;
 
@@ -51,12 +50,8 @@ public class WeatherFragment extends Fragment implements UpdateI {
             this.cityTV.setText(channel.getLocation().getCity());
             this.temperatureTV.setText(channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature());
             this.pressureTV.setText(channel.getAtmosphere().getPressure() + channel.getUnits().getPressure());
-            this.weatherIV.setImageBitmap( new YahooWeatherImage().execute(Integer.parseInt(channel.getItem().getCondition().getCode())).get() );
+            this.weatherIV.setImageBitmap(ImageController.getImage(Integer.parseInt(channel.getItem().getCondition().getCode())));
         } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }
