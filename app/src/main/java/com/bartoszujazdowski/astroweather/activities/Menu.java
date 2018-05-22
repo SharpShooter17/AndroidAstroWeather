@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.bartoszujazdowski.astroweather.R;
 
+import io.realm.Realm;
 import lombok.Getter;
 
 public class Menu extends AppCompatActivity {
@@ -44,6 +45,11 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onStop() {
+        Realm.getDefaultInstance().close();
+        super.onStop();
     }
 }

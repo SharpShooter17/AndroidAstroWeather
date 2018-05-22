@@ -42,6 +42,11 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
     public void update() {
         try {
             YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid();
+
+            if (yahooWeatherDataAndWoeid.getYahooWeatherData() == null){
+                return;
+            }
+
             this.humidityTV.setText(yahooWeatherDataAndWoeid.getYahooWeatherData().getAtmosphere().getHumidity() + "%");
             this.visabilityTV.setText(yahooWeatherDataAndWoeid.getYahooWeatherData().getAtmosphere().getVisibility() + yahooWeatherDataAndWoeid.getYahooWeatherData().getUnits().getDistance());
             this.windDirectionTV.setText(AstroUtils.getWindDirection( Integer.parseInt(yahooWeatherDataAndWoeid.getYahooWeatherData().getWind().getDirection()) ));

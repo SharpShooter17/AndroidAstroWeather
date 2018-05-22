@@ -6,20 +6,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
+import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImage;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
+
+import java.util.concurrent.ExecutionException;
 
 public class WeatherFragment extends Fragment implements UpdateI {
 
     private TextView cityTV ;
     private TextView temperatureTV;
     private TextView pressureTV;
+    private ImageView weatherIV;
 
     @Nullable
     @Override
@@ -29,6 +34,7 @@ public class WeatherFragment extends Fragment implements UpdateI {
         this.cityTV = (TextView) view.findViewById(R.id.cityTextView);
         this.temperatureTV = (TextView) view.findViewById(R.id.temperatureTextView);
         this.pressureTV = (TextView) view.findViewById(R.id.pressureTextView);
+        this.weatherIV = (ImageView) view.findViewById(R.id.weatherImageView);
 
         this.update();
 
@@ -39,10 +45,18 @@ public class WeatherFragment extends Fragment implements UpdateI {
     public void update() {
         try {
             Channel channel = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService().getYahooWeatherDataAndWoeid().getYahooWeatherData();
+            if (channel == null){
+                return;
+            }
             this.cityTV.setText(channel.getLocation().getCity());
             this.temperatureTV.setText(channel.getItem().getCondition().getTemp() + channel.getUnits().getTemperature());
             this.pressureTV.setText(channel.getAtmosphere().getPressure() + channel.getUnits().getPressure());
+            this.weatherIV.setImageBitmap( new YahooWeatherImage().execute(Integer.parseInt(channel.getItem().getCondition().getCode())).get() );
         } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }

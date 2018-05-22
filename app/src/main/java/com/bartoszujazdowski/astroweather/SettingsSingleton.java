@@ -15,6 +15,8 @@ import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
@@ -48,17 +50,19 @@ public class SettingsSingleton {
 
     private SettingsSingleton(){
         Realm.init(Menu.getContext());
-        Realm.setDefaultConfiguration(new RealmConfiguration.Builder().
+        RealmConfiguration realmConfiguration =new RealmConfiguration.Builder().
                 deleteRealmIfMigrationNeeded().
                 initialData(new Realm.Transaction() {
-                                                        @Override
-                                                        public void execute(Realm realm) {
-                                                            FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
-                                                            favouriteLocation.setCountry("en");
-                                                            favouriteLocation.setCity("London");
-                                                            YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.createObject(YahooWeatherDataAndWoeid.class);
-                                                        }
-                                                    }).build());
+                    @Override
+                    public void execute(Realm realm) {
+                        FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
+                        favouriteLocation.setCountry("en");
+                        favouriteLocation.setCity("London");
+                        YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.createObject(YahooWeatherDataAndWoeid.class);
+                    }
+                }).build();
+
+        Realm.setDefaultConfiguration(realmConfiguration);
         Realm realm = Realm.getDefaultInstance();
 
         this.favouriteLocations = new ArrayList<>(realm.where(FavouriteLocation.class).findAll());
@@ -99,6 +103,11 @@ public class SettingsSingleton {
     }
 
     public final List<FavouriteLocation> getFavouriteLocations(){
+        if (this.favouriteLocations == null){
+            List<FavouriteLocation> fa =  new ArrayList<>();
+            fa.add(new FavouriteLocation("Warsaw", "PL"));
+            return fa;
+        }
         return this.favouriteLocations;
     }
 

@@ -7,6 +7,7 @@ import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndW
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
+import com.google.android.gms.common.images.WebImage;
 
 import java.util.concurrent.ExecutionException;
 
@@ -23,7 +24,6 @@ public class WeatherController implements UpdateI {
     @Override
     public void update() {
         Realm realm = Realm.getDefaultInstance();
-
         if ( AndroidUtils.isOnline() ) {
             try {
                 this.yahooWeatherService = new YahooWeatherService(SettingsSingleton.getInstance().getUnits(), this.location.toString());

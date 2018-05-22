@@ -4,13 +4,17 @@ import android.os.AsyncTask;
 
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.YahooWeatherDataAndWoeid;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.YahooWeatherData;
 
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Centroid;
+import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Woeid;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +26,8 @@ import lombok.Setter;
 
 public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
 
-    private static final String base_URL= "https://query.yahooapis.com/v1/public/yql?format=json&q=";
+    private static final String base_URL = "https://query.yahooapis.com/v1/public/yql?format=json&q=";
+    private static final String base_image_URL = "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/";
 
     @Getter
     @Setter
@@ -89,13 +94,20 @@ public class YahooWeatherService extends AsyncTask<Void, Void, Void> {
             URL url = new URL( this.weatherUrl );
             URLConnection urlConnection = url.openConnection();
             BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
-            this.yahooWeatherDataAndWoeid.setYahooWeatherData(new Gson().fromJson(bufferedReader, YahooWeatherData.class).getQuery().getResults().getChannel());
+            YahooWeatherData yahooWeatherData = new Gson().fromJson(bufferedReader, YahooWeatherData.class);
+
+            if ( yahooWeatherData.getQuery().getCount() == 0 ){
+                this.yahooWeatherDataAndWoeid.setWoeid(null);
+                this.yahooWeatherDataAndWoeid.setYahooWeatherData(null);
+                return null;
+            }
+
+            this.yahooWeatherDataAndWoeid.setYahooWeatherData(yahooWeatherData.getQuery().getResults().getChannel());
 
             url = new URL( this.woeidUrl );
             urlConnection = url.openConnection();
             bufferedReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream() ));
             this.yahooWeatherDataAndWoeid.setWoeid(new Gson().fromJson(bufferedReader, Woeid.class).getQuery().getResults().getPlace());
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
