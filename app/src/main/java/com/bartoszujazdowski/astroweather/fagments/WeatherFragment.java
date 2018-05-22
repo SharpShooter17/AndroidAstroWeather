@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.ImageController;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
@@ -36,8 +37,16 @@ public class WeatherFragment extends Fragment implements UpdateI {
         this.weatherIV = (ImageView) view.findViewById(R.id.weatherImageView);
 
         this.update();
+        Updater.getInstance().add(this);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        Updater.getInstance().remove(this);
+
+        super.onDestroy();
     }
 
     @Override

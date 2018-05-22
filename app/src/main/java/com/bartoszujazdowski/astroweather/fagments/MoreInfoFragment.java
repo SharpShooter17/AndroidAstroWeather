@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
@@ -34,8 +35,16 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
         this.visabilityTV = view.findViewById(R.id.visabilityTextView);
 
         this.update();
+        Updater.getInstance().add(this);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        Updater.getInstance().remove(this);
+
+        super.onDestroy();
     }
 
     @Override

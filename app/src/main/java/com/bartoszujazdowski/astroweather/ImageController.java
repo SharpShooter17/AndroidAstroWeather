@@ -27,7 +27,6 @@ public class ImageController {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 result.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 yahooWeatherImage.setBitmap(stream.toByteArray());
-                result.recycle();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

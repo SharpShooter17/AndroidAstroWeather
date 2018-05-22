@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
@@ -38,10 +39,17 @@ public class MoonFragment extends Fragment implements UpdateI {
         this.moonIlluminationText = (TextView) view.findViewById(R.id.moonIlluminationText);
 
         this.update();
-
+        Updater.getInstance().add(this);
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        Updater.getInstance().remove(this);
+        super.onDestroy();
+    }
+
+    @Override
     public void update(){
         try {
             AstroCalculator.MoonInfo moonInfo = SettingsSingleton.getInstance().getAstroCalculator().getMoonInfo();

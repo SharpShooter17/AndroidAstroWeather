@@ -13,6 +13,13 @@
             android:orientation="vertical">
 
             <fragment
+                android:id="@+id/fragment3"
+                android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <fragment
                 android:id="@+id/fragment"
                 android:name="com.bartoszujazdowski.astroweather.fagments.SunFragment"
                 android:layout_width="match_parent"
@@ -27,19 +34,26 @@
                 android:layout_weight="1" />
 
             <fragment
-                android:id="@+id/fragment3"
-                android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
+                android:id="@+id/fragment10"
+                android:name="com.bartoszujazdowski.astroweather.fagments.WeatherFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/fragment11"
+                android:name="com.bartoszujazdowski.astroweather.fagments.MoreInfoFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/fragment12"
+                android:name="com.bartoszujazdowski.astroweather.fagments.WeatherForecastFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
     </ScrollView>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>

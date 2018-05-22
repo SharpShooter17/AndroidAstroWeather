@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
@@ -31,7 +32,16 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
         this.forecastRecyclerView = view.findViewById(R.id.forecastRecycleView);
         this.forecastRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         this.update();
+        Updater.getInstance().add(this);
+
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        Updater.getInstance().remove(this);
+
+        super.onDestroy();
     }
 
     @Override

@@ -1,12 +1,18 @@
 package com.bartoszujazdowski.astroweather.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
+import com.bartoszujazdowski.astroweather.AndroidUtils;
 import com.bartoszujazdowski.astroweather.R;
 
 import io.realm.Realm;
@@ -33,7 +39,7 @@ public class Menu extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu.this, Astro.class);
+                Intent intent = new Intent(Menu.this, AndroidUtils.getSizeOfScreen(Menu.getContext()) >= Configuration.SCREENLAYOUT_SIZE_LARGE ? AstroTablet.class :  Astro.class);
                 startActivity(intent);
             }
         });

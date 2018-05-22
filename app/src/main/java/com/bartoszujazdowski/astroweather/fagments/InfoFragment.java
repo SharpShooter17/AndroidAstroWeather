@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.bartoszujazdowski.astroweather.AndroidUtils;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
+import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.activities.Astro;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class InfoFragment extends Fragment {
+public class InfoFragment extends Fragment implements UpdateI{
 
     private TextView latitudeInfoText;
     private TextView longitudeInfoText;
@@ -36,9 +38,6 @@ public class InfoFragment extends Fragment {
     private ArrayAdapter<FavouriteLocation> spinnerArrayAdapter;
     private Button refreshButton;
     private TextView modeTextView;
-
-    private Handler handler = new Handler();
-    private Runnable runnable;
 
     @Nullable
     @Override
@@ -58,7 +57,7 @@ public class InfoFragment extends Fragment {
         this.refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Astro)getActivity()).updateAllNow();
+                Updater.getInstance().updateNow();
             }
         });
 
@@ -66,7 +65,7 @@ public class InfoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SettingsSingleton.getInstance().getWeatherController().setLocation(spinnerArrayAdapter.getItem(position));
-                ((Astro)getActivity()).updateAllNow();
+                Updater.getInstance().updateNow();
             }
 
             @Override
@@ -75,28 +74,18 @@ public class InfoFragment extends Fragment {
             }
         });
 
-        this.runnable = new Runnable() {
-            @Override
-            public void run() {
-                updateInfo();
-                handler.postDelayed(this, 1000);
-            }
-        };
-
-        this.handler.postDelayed(this.runnable, 0);
+        Updater.getInstance().add(this);
 
         return view;
     }
 
-    public void updateInfo(){
-
+    @Override
+    public void update(){
         this.modeTextView.setText(AndroidUtils.isOnline() ? "OnLine" : "OffLine");
 
         try {
             YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
-
             Place place = yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid();
-
             this.latitudeInfoText.setText( place.getCentroid().getLatitude() );
             this.longitudeInfoText.setText( place.getCentroid().getLongitude() );
             this.timeInfoText.setText(new Date().toString());
@@ -105,4 +94,9 @@ public class InfoFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        Updater.getInstance().remove(this);
+        super.onDestroy();
+    }
 }
