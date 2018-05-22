@@ -2,6 +2,7 @@ package com.bartoszujazdowski.astroweather.fagments;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,5 +67,10 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter< ForecastRecyc
             this.itemImage = itemView.findViewById(R.id.itemImage);
             this.parentLayout = itemView.findViewById(R.id.item);
         }
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
     }
 }

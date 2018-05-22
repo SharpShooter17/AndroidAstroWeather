@@ -70,7 +70,6 @@ public class InfoFragment extends Fragment implements UpdateI{
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 

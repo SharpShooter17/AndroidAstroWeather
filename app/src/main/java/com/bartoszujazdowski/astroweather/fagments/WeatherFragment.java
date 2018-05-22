@@ -3,6 +3,7 @@ package com.bartoszujazdowski.astroweather.fagments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,16 +37,13 @@ public class WeatherFragment extends Fragment implements UpdateI {
         this.pressureTV = (TextView) view.findViewById(R.id.pressureTextView);
         this.weatherIV = (ImageView) view.findViewById(R.id.weatherImageView);
 
-        this.update();
         Updater.getInstance().add(this);
-
         return view;
     }
 
     @Override
     public void onDestroy() {
         Updater.getInstance().remove(this);
-
         super.onDestroy();
     }
 
