@@ -12,77 +12,69 @@
         android:layout_height="match_parent"
         android:layout_margin="16px"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TableLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/fragment4"
+                android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/fragment5"
+                android:name="com.bartoszujazdowski.astroweather.fagments.WeatherFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/fragment6"
+                android:name="com.bartoszujazdowski.astroweather.fagments.SunFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <fragment
+                android:id="@+id/fragment7"
+                android:name="com.bartoszujazdowski.astroweather.fagments.MoonFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
-            <TableRow
+            <fragment
+                android:id="@+id/fragment8"
+                android:name="com.bartoszujazdowski.astroweather.fagments.MoreInfoFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
 
-                <fragment
-                    android:id="@+id/fragment4"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.InfoFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <fragment
-                    android:id="@+id/fragment5"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.WeatherFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow
+            <fragment
+                android:id="@+id/fragment9"
+                android:name="com.bartoszujazdowski.astroweather.fagments.WeatherForecastFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <fragment
-                    android:id="@+id/fragment6"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.SunFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <fragment
-                    android:id="@+id/fragment7"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.MoonFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <fragment
-                    android:id="@+id/fragment8"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.MoreInfoFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <fragment
-                    android:id="@+id/fragment9"
-                    android:name="com.bartoszujazdowski.astroweather.fagments.WeatherForecastFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
-
-        </TableLayout>
-
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

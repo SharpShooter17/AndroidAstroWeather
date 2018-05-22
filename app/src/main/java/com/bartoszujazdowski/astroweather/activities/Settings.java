@@ -2,6 +2,8 @@ package com.bartoszujazdowski.astroweather.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -9,8 +11,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.bartoszujazdowski.astroweather.Helpers.CustomTextWatcher;
-import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
@@ -41,7 +42,27 @@ public class Settings extends Activity {
 
         this.refreshFrequencyInpt.setText( SettingsSingleton.getInstance().getRefreshFrequency().toString() );
 
-        this.refreshFrequencyInpt.addTextChangedListener( new CustomTextWatcher<>( SettingsSingleton.getInstance().getRefreshFrequency() ) );
+        this.refreshFrequencyInpt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    SettingsSingleton.getInstance().setRefreshFrequency(Integer.parseInt(s.toString()));
+                    Updater.getInstance().setInterval(Integer.parseInt(s.toString()) * 1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         this.unitsSwitch.setChecked( UNITS.Celsius == SettingsSingleton.getInstance().getUnits() ? true : false );
 

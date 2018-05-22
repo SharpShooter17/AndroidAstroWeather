@@ -34,7 +34,7 @@ public class SettingsSingleton {
 
     @Setter
     @Getter
-    private MutableNumber<Integer> refreshFrequency;
+    private Integer refreshFrequency;
 
     private static SettingsSingleton instance;
 
@@ -72,7 +72,7 @@ public class SettingsSingleton {
         this.favouriteLocations = new ArrayList<>(realm.where(FavouriteLocation.class).findAll());
 
         this.units = UNITS.Celsius;
-        this.refreshFrequency = new MutableNumber<>(new Integer(60));
+        this.refreshFrequency = new Integer(60);
 
         this.weatherController = new WeatherController();
 
