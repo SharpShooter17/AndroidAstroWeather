@@ -18,11 +18,13 @@ public class AstroTablet extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro);
 
+        Updater.getInstance().removeAll();
+        Updater.getInstance().add(SettingsSingleton.getInstance().getWeatherController());
+
         for (Fragment f : this.getSupportFragmentManager().getFragments()){
             Updater.getInstance().add((UpdateI) f);
         }
 
-        Updater.getInstance().add(SettingsSingleton.getInstance().getWeatherController());
         Updater.getInstance().start();
     }
 

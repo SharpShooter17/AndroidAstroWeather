@@ -46,6 +46,7 @@ public class Astro extends FragmentActivity {
 
         Updater.getInstance().removeAll();
 
+        Updater.getInstance().add(SettingsSingleton.getInstance().getWeatherController());
         Updater.getInstance().add(this.infoFragment);
         Updater.getInstance().add(this.moonFragment);
         Updater.getInstance().add(this.sunFragment);
@@ -53,7 +54,6 @@ public class Astro extends FragmentActivity {
         Updater.getInstance().add(this.weatherForecastFragment);
         Updater.getInstance().add(this.weatherFragment);
 
-        Updater.getInstance().add(SettingsSingleton.getInstance().getWeatherController());
         Updater.getInstance().start();
     }
 
