@@ -1,6 +1,7 @@
 package com.bartoszujazdowski.astroweather;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -8,6 +9,7 @@ import com.astrocalculator.AstroCalculator;
 import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.MutableNumber;
+import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.activities.Menu;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherImage;
 import com.bartoszujazdowski.astroweather.yahooWeather.enums.UNITS;
@@ -71,9 +73,16 @@ public class SettingsSingleton {
 
         this.favouriteLocations = new ArrayList<>(realm.where(FavouriteLocation.class).findAll());
 
-        this.units = UNITS.Celsius;
-        this.refreshFrequency = new Integer(60);
+        SharedPreferences sharedPref = Menu.getContext().getSharedPreferences( Menu.getContext().getString(R.string.units), Context.MODE_PRIVATE);
+        String unitsStr = sharedPref.getString(Menu.getContext().getString(R.string.units), "true");
 
+        this.units = unitsStr.compareTo("true") == 0 ? UNITS.Celsius : UNITS.Fahrenheit;
+
+        SharedPreferences sharedPrefFreq = Menu.getContext().getSharedPreferences( Menu.getContext().getString(R.string.refresh_frequency), Context.MODE_PRIVATE);
+        String freqStr = sharedPrefFreq.getString(Menu.getContext().getString(R.string.refresh_frequency), "60");
+
+        this.refreshFrequency = Integer.parseInt(freqStr);
+        Updater.getInstance().setInterval(this.refreshFrequency * 1000);
         this.weatherController = new WeatherController();
 
         this.astroCalculator = new AstroCalculator(

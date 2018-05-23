@@ -1,6 +1,8 @@
 package com.bartoszujazdowski.astroweather.activities;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -61,6 +63,12 @@ public class Settings extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                SharedPreferences sharedPref = Menu.getContext().getSharedPreferences( getString(R.string.refresh_frequency), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor =  sharedPref.edit();
+                editor.putString( getString(R.string.refresh_frequency), s.toString() );
+                editor.commit();
+
             }
         });
 
@@ -70,6 +78,10 @@ public class Settings extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SettingsSingleton.getInstance().setUnits( isChecked ? UNITS.Celsius : UNITS.Fahrenheit );
+                SharedPreferences sharedPref = Menu.getContext().getSharedPreferences( getString(R.string.units), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor =  sharedPref.edit();
+                editor.putString( getString(R.string.units), isChecked ? "true" : "false" );
+                editor.commit();
             }
         });
 

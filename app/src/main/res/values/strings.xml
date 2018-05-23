@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AstroWeather</string>
+    <string name="units">true</string>
+    <string name="refresh_frequency" />
 </resources>
