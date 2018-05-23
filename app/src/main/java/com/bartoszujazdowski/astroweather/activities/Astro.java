@@ -2,6 +2,7 @@ package com.bartoszujazdowski.astroweather.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
@@ -28,6 +29,12 @@ import java.util.List;
 public class Astro extends FragmentActivity {
 
     private ViewPager viewPager;
+    private InfoFragment infoFragment;
+    private MoonFragment moonFragment;
+    private MoreInfoFragment moreInfoFragment;
+    private SunFragment sunFragment;
+    private WeatherForecastFragment weatherForecastFragment;
+    private WeatherFragment weatherFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +44,28 @@ public class Astro extends FragmentActivity {
         setupViewPager(viewPager);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
+        Updater.getInstance().removeAll();
+
+        Updater.getInstance().add(this.infoFragment);
+        Updater.getInstance().add(this.moonFragment);
+        Updater.getInstance().add(this.sunFragment);
+        Updater.getInstance().add(this.moreInfoFragment);
+        Updater.getInstance().add(this.weatherForecastFragment);
+        Updater.getInstance().add(this.weatherFragment);
+
         Updater.getInstance().add(SettingsSingleton.getInstance().getWeatherController());
         Updater.getInstance().start();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Updater.getInstance().remove(SettingsSingleton.getInstance().getWeatherController());
-        Updater.getInstance().stop();
-        super.onDestroy();
     }
 
     private void setupViewPager(ViewPager viewPager){
         AstroStatePageAdapter adapter = new AstroStatePageAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new InfoFragment(), "Info");
-        adapter.addFragment(new SunFragment(), "Sun");
-        adapter.addFragment(new MoonFragment(), "Moon");
-        adapter.addFragment(new WeatherFragment(), "Weather");
-        adapter.addFragment(new MoreInfoFragment(), "MoreInfo");
-        adapter.addFragment(new WeatherForecastFragment(), "WeatherForecast");
+        adapter.addFragment(this.infoFragment = new InfoFragment(), "Info");
+        adapter.addFragment(this.sunFragment = new SunFragment(), "Sun");
+        adapter.addFragment(this.moonFragment = new MoonFragment(), "Moon");
+        adapter.addFragment(this.weatherFragment = new WeatherFragment(), "Weather");
+        adapter.addFragment(this.moreInfoFragment = new MoreInfoFragment(), "MoreInfo");
+        adapter.addFragment(this.weatherForecastFragment = new WeatherForecastFragment(), "WeatherForecast");
 
         viewPager.setAdapter(adapter);
     }

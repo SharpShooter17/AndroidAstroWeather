@@ -2,7 +2,6 @@ package com.bartoszujazdowski.astroweather.fagments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +13,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.AndroidUtils;
-import com.bartoszujazdowski.astroweather.Helpers.AstroUtils;
 import com.bartoszujazdowski.astroweather.Helpers.FavouriteLocation;
 import com.bartoszujazdowski.astroweather.Helpers.UpdateI;
 import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.R;
 import com.bartoszujazdowski.astroweather.SettingsSingleton;
-import com.bartoszujazdowski.astroweather.activities.Astro;
 import com.bartoszujazdowski.astroweather.yahooWeather.YahooWeatherService;
-import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Channel;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.woeid.Place;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class InfoFragment extends Fragment implements UpdateI{
 
@@ -73,29 +67,25 @@ public class InfoFragment extends Fragment implements UpdateI{
             }
         });
 
-        Updater.getInstance().add(this);
+        this.update();
 
         return view;
     }
 
     @Override
     public void update(){
-        this.modeTextView.setText(AndroidUtils.isOnline() ? "OnLine" : "OffLine");
-
         try {
+            this.modeTextView.setText(AndroidUtils.isOnline() ? "OnLine" : "OffLine");
             YahooWeatherService yahooWeatherService = SettingsSingleton.getInstance().getWeatherController().getYahooWeatherService();
             Place place = yahooWeatherService.getYahooWeatherDataAndWoeid().getWoeid();
+            if (place == null){
+                return;
+            }
             this.latitudeInfoText.setText( place.getCentroid().getLatitude() );
             this.longitudeInfoText.setText( place.getCentroid().getLongitude() );
             this.timeInfoText.setText(new Date().toString());
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
     }
 }

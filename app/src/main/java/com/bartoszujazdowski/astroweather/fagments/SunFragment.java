@@ -37,14 +37,10 @@ public class SunFragment extends Fragment implements UpdateI {
         this.sunsetText = view.findViewById(R.id.sunsetText);
         this.civilMorningText = view.findViewById(R.id.civilMorningText);
         this.civilEveningText = view.findViewById(R.id.civilEveningText);
-        Updater.getInstance().add(this);
-        return view;
-    }
 
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
+        this.update();
+
+        return view;
     }
 
     @Override

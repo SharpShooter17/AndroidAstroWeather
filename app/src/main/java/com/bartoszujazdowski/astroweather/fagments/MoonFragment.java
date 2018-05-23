@@ -38,14 +38,9 @@ public class MoonFragment extends Fragment implements UpdateI {
         this.moonAgeText = (TextView) view.findViewById(R.id.moonAge);
         this.moonIlluminationText = (TextView) view.findViewById(R.id.moonIlluminationText);
 
-        Updater.getInstance().add(this);
-        return view;
-    }
+        this.update();
 
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
+        return view;
     }
 
     @Override

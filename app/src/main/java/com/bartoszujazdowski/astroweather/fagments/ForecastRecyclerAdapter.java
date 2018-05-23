@@ -33,9 +33,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter< ForecastRecyc
     @Override
     public ForecastRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_forecast, parent, false);
-
         ViewHolder viewHolder = new ViewHolder(view);
-
         return viewHolder;
     }
 

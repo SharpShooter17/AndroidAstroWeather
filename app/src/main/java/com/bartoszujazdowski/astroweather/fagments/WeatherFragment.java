@@ -37,14 +37,9 @@ public class WeatherFragment extends Fragment implements UpdateI {
         this.pressureTV = (TextView) view.findViewById(R.id.pressureTextView);
         this.weatherIV = (ImageView) view.findViewById(R.id.weatherImageView);
 
-        Updater.getInstance().add(this);
-        return view;
-    }
+        this.update();
 
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
+        return view;
     }
 
     @Override

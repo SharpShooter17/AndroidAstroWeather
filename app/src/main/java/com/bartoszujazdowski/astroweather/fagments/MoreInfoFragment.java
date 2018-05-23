@@ -33,14 +33,10 @@ public class MoreInfoFragment extends Fragment implements UpdateI {
         this.windDirectionTV = view.findViewById(R.id.windDirectionTextView);
         this.humidityTV = view.findViewById(R.id.humidityTextView);
         this.visabilityTV = view.findViewById(R.id.visabilityTextView);
-        Updater.getInstance().add(this);
-        return view;
-    }
 
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
+        this.update();
+
+        return view;
     }
 
     @Override

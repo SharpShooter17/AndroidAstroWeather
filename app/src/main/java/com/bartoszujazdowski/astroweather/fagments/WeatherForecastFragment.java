@@ -5,12 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bartoszujazdowski.astroweather.Helpers.Updater;
 import com.bartoszujazdowski.astroweather.ImageController;
@@ -20,8 +17,6 @@ import com.bartoszujazdowski.astroweather.SettingsSingleton;
 import com.bartoszujazdowski.astroweather.yahooWeather.pojo.weather.Forecast;
 
 import java.util.List;
-
-import static android.util.TypedValue.COMPLEX_UNIT_SP;
 
 public class WeatherForecastFragment extends Fragment implements UpdateI {
 
@@ -33,14 +28,10 @@ public class WeatherForecastFragment extends Fragment implements UpdateI {
         View view = inflater.inflate(R.layout.weather_forecast_fragment, container, false);
         this.forecastRecyclerView = view.findViewById(R.id.forecastRecycleView);
         this.forecastRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        Updater.getInstance().add(this);
-        return view;
-    }
 
-    @Override
-    public void onDestroy() {
-        Updater.getInstance().remove(this);
-        super.onDestroy();
+        this.update();
+
+        return view;
     }
 
     @Override

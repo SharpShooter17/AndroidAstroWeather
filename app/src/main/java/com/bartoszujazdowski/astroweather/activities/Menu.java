@@ -54,8 +54,10 @@ public class Menu extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        Realm.getDefaultInstance().close();
-        super.onStop();
+    protected void onDestroy() {
+        if (!Realm.getDefaultInstance().isClosed()) {
+            Realm.getDefaultInstance().close();
+        }
+        super.onDestroy();
     }
 }

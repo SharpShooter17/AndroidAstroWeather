@@ -10,22 +10,25 @@ import java.util.logging.Logger;
 import lombok.Setter;
 
 public class Updater {
+
     private Runnable runnable;
+
     private Handler handler;
-    private List<UpdateI> updateIList = new ArrayList<>();
+
+    private List<UpdateI> updateIList;
+
     @Setter
-    private Integer interval = new Integer(60000);
+    private Integer interval;
 
     private static Updater instance;
 
-    public static Updater getInstance() {
-        if ( !(instance instanceof Updater) ){
-            instance = new Updater();
-        }
-        return instance;
-    }
+    private Updater(){
+        this.handler = new Handler();
 
-    public void start(){
+        this.updateIList = new ArrayList<>();
+
+        this.interval = new Integer(60*1000);
+
         this.runnable = new Runnable() {
             @Override
             public void run() {
@@ -38,13 +41,28 @@ public class Updater {
                 handler.postDelayed(this, interval);
             }
         };
-        this.handler = new Handler();
-        this.handler.postDelayed(this.runnable, this.interval );
+    }
+
+    public static Updater getInstance() {
+        if ( !(instance instanceof Updater) ){
+            instance = new Updater();
+        }
+        return instance;
+    }
+
+    public void start(){
+        this.updateNow();
     }
 
     public void add(UpdateI updateI){
         synchronized (this.updateIList) {
             this.updateIList.add(updateI);
+        }
+    }
+
+    public void addAll(List<UpdateI> list){
+        synchronized (this.updateIList){
+            this.updateIList.addAll(list);
         }
     }
 
