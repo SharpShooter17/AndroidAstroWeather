@@ -14,10 +14,14 @@ import android.widget.Button;
 
 import com.bartoszujazdowski.astroweather.AndroidUtils;
 import com.bartoszujazdowski.astroweather.R;
+import com.bartoszujazdowski.astroweather.RealmCustom;
 
 import io.realm.Realm;
 import lombok.Getter;
 
+/**
+ * Początek i koniec aplikacji...
+ */
 public class Menu extends AppCompatActivity {
 
     private Button startButton;
@@ -51,13 +55,13 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        RealmCustom.initRealm();
     }
 
     @Override
     protected void onDestroy() {
-        if (!Realm.getDefaultInstance().isClosed()) {
-            Realm.getDefaultInstance().close();
-        }
+        RealmCustom.closeRealm();
         super.onDestroy();
     }
 }

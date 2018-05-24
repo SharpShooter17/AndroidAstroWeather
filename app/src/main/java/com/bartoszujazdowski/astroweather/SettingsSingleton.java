@@ -52,23 +52,6 @@ public class SettingsSingleton {
     private UNITS units;
 
     private SettingsSingleton(){
-        Realm.init(Menu.getContext());
-        RealmConfiguration realmConfiguration =new RealmConfiguration.Builder().
-                deleteRealmIfMigrationNeeded().
-                initialData(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        FavouriteLocation favouriteLocation = realm.createObject(FavouriteLocation.class);
-                        favouriteLocation.setCountry("en");
-                        favouriteLocation.setCity("London");
-                        YahooWeatherDataAndWoeid yahooWeatherDataAndWoeid = realm.createObject(YahooWeatherDataAndWoeid.class);
-                        YahooWeatherImage yahooWeatherImage = realm.createObject(YahooWeatherImage.class);
-                        yahooWeatherImage.setCode(null);
-                        yahooWeatherImage.setBitmap(null);
-                    }
-                }).build();
-
-        Realm.setDefaultConfiguration(realmConfiguration);
         Realm realm = Realm.getDefaultInstance();
 
         this.favouriteLocations = new ArrayList<>(realm.where(FavouriteLocation.class).findAll());
